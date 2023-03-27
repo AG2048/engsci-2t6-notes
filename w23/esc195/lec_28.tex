@@ -1,0 +1,100 @@
+\section{Partial Derivatives}
+\begin{itemize}
+	\item Continuity:
+\[
+			\lim_{\vec{x} \to \vec{x_0}} f\left( \vec{x} \right)  = f\left( \vec{x_0} \right) 
+			.\] 
+		\begin{theorem}
+			The continuity of composite functions are defined as, for any function $g\left( \vec{x_0} \right) $, if it is continuous at $\vec{x_0}$ and function $f$ is continuous at the NUMBER $g\left( \vec{x_0} \right) $ m then we can say $f\left( g\left( \vec{x} \right)  \right) $ is continuous at $\vec{x_0}$
+		\end{theorem}
+	\item if $f\left( \vec{x} \right) $ is xontinuous at $\vec{x_0}$, then:
+		\begin{align*}
+			\lim_{x \to x_0} f\left( x, y_0 \right)  &=  f\left( x_0, y_0 \right)\\
+			\lim_{y \to y_0}  f\left( x_0, y \right)  &= f\left( x_0, y_0 \right) 
+		.\end{align*}
+	\item If we have the top half of a sphere with radius 5, we have:
+		\[
+		f = \sqrt{25 - x^2 -y^2} 
+		.\] 
+		Suppose we are interested in what is happening when we are moving along the line y = 2:
+		\begin{definition}
+			Partial derivative of $f\left( x,y \right) $ is given by:
+			\begin{equation}
+				f_{x}\left( x, y \right)  = \frac{\partial}{\partial x} f\left( x,y \right)  = \lim_{h \to 0} \frac{f\left( x+h, y \right) -f\left( x,y \right) }{h}
+			\end{equation}
+			or the partial derivative with respect to $y$:
+			\begin{equation}
+				f_y\left( x,y \right)  = \frac{\partial }{\partial y} f\left( x, y \right)  = \lim_{h \to 0} \frac{f\left( x,y+h \right) -f\left( x,y \right) }{h}
+			\end{equation}
+			This can be extended to an arbitrary number of dimensions.
+		\end{definition}
+		\begin{example}
+			Suppose we have a function $f\left( x,y \right)  = e^{x^2y^3}$ :
+			\begin{align*}
+				f_x &= y^3\cdot 2xe^{x^2y^3}\\
+				f_y &= 3y^2x^2e^{x^2y^3} \\
+			.\end{align*}
+			At $y=2$, we have:
+			\begin{align*}
+				f_x\left( x,2 \right)  &= 16xe^{8x^2}\\
+				f_x\left( 1,2 \right)  &= 16e^{8} \\
+			.\end{align*}
+			This is equivalent if we take a cross section of this equation on the $y=2$ plane, and look at the derivative or the slope of tangent at that point.
+		\end{example}
+		\begin{example}
+			Now we have a 3-D function, $f\left( x, y,z \right)  = \ln\left( \frac{x}{y} \right) -ye^{xz}$. The partial derivatives are:
+			\begin{align*}
+				f_x &= \frac{1}{x} - yze^{xz}\\
+				f_y &= -\frac{1}{y} - e^{xz} \\
+				f_z &=  -xye^{xz} \\
+			.\end{align*}
+		\end{example}
+		\begin{example}
+			Supplse we have $h\left( r,\theta,\phi \right) =r^2 \sin\theta \cos\phi$:
+			\begin{align*}
+				h_r &=  2r\sin\theta \cos \phi \\
+				h_\theta &= r^2\cos\theta\cos\phi\\
+				h_\phi &= -r^2\sin\theta\sin\phi \\
+			.\end{align*}
+		\end{example}
+	\item We can also have Mixed Partials:
+		\begin{align*}
+		\frac{\partial }{\partial x} \left( \frac{\partial f}{\partial x}  \right) \to \frac{\partial ^2f}{\partial x^2} &= f_{x x} \\
+		\frac{\partial }{\partial y} \left( \frac{\partial f}{\partial y}  \right)  \to \frac{\partial ^2f}{\partial y^2}  &= f_{y y} \\
+		\frac{\partial }{\partial y} \left( \frac{\partial f}{\partial x}  \right)  = \frac{\partial ^2f}{\partial x \partial y}  &=  f_{xy}\\ 
+	\end{align*}
+		\begin{theorem}
+			Clairaut's Theorem says that:
+			\begin{equation}
+				\frac{\partial ^2f}{\partial y \partial x}  = \frac{\partial ^2f}{\partial y \partial x} \\
+			\end{equation}
+			on every open set on which $f$ and its partials $\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial ^2f}{\partial x \partial y}, \frac{\partial ^2f}{\partial y \partial x} $ are continuous, so we have:
+			\begin{align*}
+				\frac{\partial ^2f}{\partial x \partial y}  &= \frac{\partial ^2f}{\partial y \partial x}  \\
+				\frac{\partial ^2f}{\partial z \partial y}  &=  \frac{\partial ^2f}{\partial y \partial z}  \\
+				\frac{\partial ^2f}{\partial x \partial z} &= \frac{\partial ^2f}{\partial z \partial x}  \\
+			.\end{align*}
+		\end{theorem}
+		\begin{example}
+			We have $f\left( x,y \right)  = \cos\left( xy^2 \right) $ 
+			\begin{align*}
+				f_{x} &= -y^2\sin\left( xy^2 \right)  \\
+				f_y &= -\sin\left( xy^2 \right) \cdot 2xy \\
+				\frac{\partial ^2f}{\partial y \partial x} &= -2y\sin\left( xy^2 \right)  - y^2\cos\left( xy^2 \right) \cdot 2xy \\
+				\frac{\partial ^2f}{\partial x \partial y} &= -2y\sin\left( xy^2 \right) -2xy\cos\left( xy^2 \right) \cdot y^2 = \frac{\partial ^2f}{\partial y \partial x}  \\
+			.\end{align*}
+		\end{example}
+	\item partial derivatives can be used to desribe differential equations with multiple variables:
+		\begin{example}
+			Laplace's equation:
+			\begin{equation}
+				\frac{\partial ^2f}{\partial x^2}  + \frac{\partial ^2f}{\partial y^2}=0
+			\end{equation}
+			One-dimensional wave equation:
+			\begin{equation}
+				\frac{\partial ^2f}{\partial t^2}  = a^2 \frac{\partial ^2f}{\partial x^2}
+			\end{equation}
+			Here $a$ represents the speed of the wave.
+		\end{example}
+\end{itemize}
+$\mathcal{123}$

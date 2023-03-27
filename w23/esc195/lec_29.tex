@@ -1,0 +1,208 @@
+\section{Directional Derivatives and Gradient Functions}
+March 24, 2023
+\begin{itemize}
+	\item A partial derivative:
+		\begin{definition}
+			A partial derivative of $f$ on $x$, denoted as $f_x = \frac{\partial f}{\partial x} $ is defined as:
+			\begin{equation}
+				\lim_{h \to 0} \frac{f\left( x+h, y, z \right) -f\left( x, y, z \right) }{h}
+			\end{equation}
+			only if $\lim_{h \to 0} \frac{g\left( h \right) }{h} = 0 \implies g\left( h \right)  = o\left( h \right) $
+		\end{definition}
+		\begin{example}
+			For a function $f\left( x \right)  = x^2$, $f\left( x+h \right) -f(x) =  \left( x+h \right) ^2 - x^2 = 2xh + h^2$ 
+		Note here that
+		\begin{equation}
+			\lim_{h \to 0} \frac{h^2}{h} = \lim_{h \to 0} h = 0
+		\end{equation}
+		since the function of h, $g\left( h \right)$ satisfies the previous definition, we say that $h^2$ is an $o\left( h \right) $, which further shows that $f'\left( x \right)  = 2x$
+		\end{example}
+		\begin{idea}
+			With this, we can write out the derivative definition using just the numerator part of the derivative 
+			\begin{equation}
+				f\left( x+h \right)  - f\left( x \right) 
+			\end{equation}
+			And the result of this expression will leave us with two types of equations.
+			\begin{equation}
+				\text{derivative} \cdot  h
+			\end{equation}
+			or
+			\begin{equation}
+				\text{something} \cdot  o\left( h \right) 
+			\end{equation}
+			anything that is multipled by $o\left( h \right) $ will be reduced to zero due to the definition of $o\left( h \right) $, which is why the first expression gives us the derivative.\\
+			This is especially useful when we are trying to find the derivative of a multivariable function. 
+		\end{idea} 
+	\item differentiability of a multivariable function
+\begin{definition}
+	we say $f$ is differentiable at $\vec{x}$ iff there exists $\vec{y}$ s.t. \[
+	f(\vec{x}+\vec{h}) - f(\vec{x}) = \vec{y} \cdot \vec{h} + o(\vec{h})\\
+	\vec{y} = Df(\vec{x}) = \text{the gradient of } f 
+	.\] 
+\end{definition}
+
+\begin{example}
+	Here we have the function $f\left( x, y \right)  = x+y^2$ and the h function $\vec{h} = \left( h_1,h_2 \right) $
+	\begin{align*}
+		f(\vec{x} + \vec{h}) - f(\vec{x}) &= f(x+h_1, y+h_2) - f(x, y)\\
+						  &= x + h_1 + (y +h_2)^2 - x - y^2\\
+						  &= h_1 + 2yh_2 + h_2^2\\
+						  &= (1\hat{i} + 2y\hat{j})\cdot \vec{h} + h_2^2
+	\end{align*}
+	After this, we need to demonstrate that the remaining part of the function, that is $h_2^2$, is actually a $o\left( \vec{h} \right) $ function. To do that, we define $g(\vec{h}) = h^2 = (h_2\hat{j})\cdot (h_1\hat{i}+h_2\hat{j}) = h_2\hat{j}\cdot \vec{h}$. So we can write $g\left( \vec{h} \right)  = h_2\vec{j}\cdot \vec{h}$ 
+\begin{align*}
+	\frac{|g\left( \vec{h} \right) |}{\lVert \vec{h} \rVert } = \frac{|x| |h_2| \lVert \vec{h} \rVert |\cos \theta|}{\lVert \vec{h} \rVert } \le |xh_2|\\
+	\lim_{h \to 0} |xh_2| = 0 \implies xh_2h_3 = o\left( \vec{h} \right) \\
+	\therefore \nabla f\left( \vec{x} \right) = yz\hat{i} + xz\hat{i} + xy\hat{k}
+.\end{align*}
+	
+	 We know that $h_2\to 0$ as $\vec{h}\to \vec{0}$ So $g(\vec{h})$ is $o(\vec{h})$ and we can claim that:
+	 \begin{equation}
+	 	\nabla f(\vec{x}) = 1\hat{i} + wy\hat{j}
+	 \end{equation}
+\end{example}
+\begin{example}
+	For this example we have $f\left( x, y, z \right)  = xyz$
+	\begin{align*}
+		f\left( \vec{x} + \vec{h} \right)  - f\left( \vec{x} \right)  &= \left( x+h_1 \right) \left( y+h_2 \right) \left( z+h_3 \right)  - xyz\\
+		&= xyz + xyh_3 + xh_2z + xh_2h_3+h_1yz + h_1yh_3 + h_1h_2z + h_1h_2h_3 - xyz\\
+		&=\left( yz\hat{i} + xz\hat{j} + xy\hat{k} \right) \cdot \vec{h}
+	.\end{align*}
+	We consider the case of $xh_2h_3 = g(\vec{h}) = xh_2\hat{k}\cdot \vec{h}$
+	\begin{align*}
+		\frac{g\left( \vec{h} \right) }{\lVert \vec{h} \rVert } = \frac{|x| |h_2| \lVert \vec{h} \rVert |\cos \theta| }{\lVert \vec{h} \rVert } \le |xh_2|\\
+		\lim_{h \to 0} |xh_2| = 0 \implies xh_2h_3 \text{ is }  o\left( \vec{h} \right)\\
+		\therefore \nabla f\left( \vec{x} \right)  = yz\hat{i} + xz\hat{j} + xy\hat{k}
+	.\end{align*}
+	\begin{equation}
+		\nabla f\left( x,y,z \right)  = \left( f_x, f_y, f_z \right) 
+	\end{equation}
+
+\end{example}
+
+\begin{theorem}
+	For cartesian coordinates:
+	\begin{equation}
+		\nabla f(x, y, z) = \frac{\partial f}{\partial x}\hat{i} + \frac{\partial f}{\partial y} \hat{j}+ \frac{\partial f}{\partial z} \hat{k} 
+	\end{equation}
+	Or equally written as:
+	\begin{equation}
+		\nabla f(x, y, z) = (f_x, f_y, f_z)  
+	\end{equation}
+\end{theorem}
+\item Gradients are the vectors that points steepest way "up the hill"
+\item $\vec{x}$ is vector
+\item $f(\vec{x}) $ is not vector
+\item $\nabla f(\vec{x}) $ is a vector
+
+\begin{example}
+	Suppose we have a temperature function with respect to $x$ and $y$, and we have $\frac{\partial T}{\partial x} = 3 \frac{^\circ C}{m}$ and $\frac{\partial T}{\partial y} = 4 \frac{^\circ C}{m}$. From this, we can conclude that:
+	\begin{equation}
+		\nabla T = 3\hat{i}+4\hat{j}
+	\end{equation}
+	And that:
+	\begin{equation}
+		|\nabla T| = \sqrt{3^2+4^2}  = 5
+	\end{equation} 
+\end{example}
+\begin{example}
+	For this example we have $f\left( \vec{x} \right)  = xy^2z^3$, and we can compute their partial derivatives:
+	\begin{align*}
+		f_x &= y^2z^3 \\
+		f_y &= 2xyz^3 \\
+		f_z &=  3xy^2z^2 \\
+	.\end{align*}
+	And we have
+	\begin{equation}
+		\nabla f = \left( y^2z^3, 2xyz^3, 3xy^2z^2 \right) 
+	\end{equation}
+\end{example}
+\begin{example}
+	We have function $\vec{r}\left( x, y, z \right) \implies r = \sqrt{x^2+y^2+z^2}$
+	So we then have
+	\begin{align*}
+		\nabla r &= \nabla \sqrt{x^2+y^2+z^2} \\ &= \frac{\frac{1}{2}2x}{\sqrt{x^2+y^2+z^2}} \hat{i} + \frac{\frac{1}{2}2y}{\sqrt{x^2+y^2+z^2}}\hat{j} + \frac{\frac{1}{2}2z}{\sqrt{x^2+y^2+z^2}}\hat{k}
+	\end{align*}
+	rewriting this gives us:
+	\begin{equation}
+		\nabla r = \frac{\vec{r}}{r}
+	\end{equation}
+\end{example}
+\item For any directional derivative, we can define it being:
+	\[
+	\frac{\partial f}{\partial x} = \lim_{h \to 0} \frac{f\left( \vec{x_0} + h\hat{i} \right)  - f\left( \vec{x_0} \right) }{h}
+	.\] 
+	Expanding this to any arbituary direction is:
+	\begin{definition}
+		Directional derivative of function $f$ at $\vec{x_0}$ in direction $\hat{u}$ 
+		\begin{equation}
+			f_{\hat{u}} \left( \vec{x_0} \right)  = \lim_{h \to 0} \frac{f\left( \vec{x_0}+h\hat{u} \right)  - f\left( \vec{x_0} \right) }{h}
+		\end{equation}
+		We also have
+		\begin{equation}
+			f_{\hat{u}}\left( \vec{x_0} \right)  = \nabla f\left( \vec{x_0} \right) \cdot \hat{u}
+		\end{equation}
+	\end{definition}
+\begin{proof}
+	Proving that $f_{\hat{u}}\left( \vec{x_0} \right)  = \nabla f\left( \vec{x_0} \right) \cdot  \hat{u}$:
+	\begin{equation}
+		f\left( \vec{x} + \vec{h} \right)  - f\left( \vec{x} \right)  = \nabla f\left( \vec{x} \right) \cdot  \vec{h} + o\left( \vec{h} \right)  
+	\end{equation}
+	Where $\vec{h} = h\hat{i}$. Using this, we can show the above is equal to:
+	\begin{equation}
+		\nabla f\left( \vec{x} \right) \cdot h\hat{u} + o\left( \vec{h} \right) 
+	\end{equation}
+	and therefore:
+	\begin{equation}
+		\frac{f\left( \vec{x} + h\hat{u} \right)  - f\left( \vec{x} \right) }{h} = \nabla f \cdot  \hat{u} + \frac{o\left( \vec{h} \right) }{h}
+	\end{equation}
+	and taking the limit as $h\to 0$, we have the desired result.
+\end{proof}
+
+\begin{example}
+	Using the same temperature example, we have $T\left( x, y \right) $ where $\frac{\partial T}{\partial y} = 4 \frac{^\circ C}{m}$ and $\frac{\partial T}{\partial x} = 3 \frac{^\circ C}{m}$. If we want to move in a direction of $\hat{u} = \cos\theta \hat{i} + \sin \theta \hat{j}$
+	\begin{equation}
+		T_{\hat{u}} = \left( \frac{\partial T}{\partial x} \hat{i} + \frac{\partial T}{\partial y} \hat{j} \right)\left( \cos \theta \hat{i} + \sin \theta \hat{j} \right)  = 3\cos\theta + 4\sin\theta
+	\end{equation}
+\end{example}
+\begin{example}
+	Suppose we have a parabolic hill described by $z\left( x,y \right)  = 20 - x^2 - y^{2}$ and we move straight up, or we can say that $\hat{u} = \left( 0,1 \right) $.
+	\begin{align*}
+		\frac{\partial f}{\partial x}  &= -2x \\
+		\frac{\partial f}{\partial y}  &=  -2y \\
+	.\end{align*}
+	\begin{equation}
+		\therefore z_{\hat{u}} = \left( -2x, -2y \right) \cdot \left( 0, -1 \right) = 2y
+	\end{equation}
+\end{example}
+(The following is not on that lecture, but from Xue Qilin's notes)
+\item Note that:
+	\begin{align*}
+		|f_{\hat{k}}\left( \vec{x} \right) | &= |\nabla f \cdot  \hat{u}|\\
+		&= \lVert \nabla f \rVert \lVert \hat{u} \rVert |\cos\theta| \\
+		&\le \lVert \nabla f \rVert	
+	.\end{align*}
+	\begin{example}
+		Suppose that $z = f\left( x,y \right) = A + x + 2y + x^2 - 2y^2$ and we wish to find the steepest path down starting from $\left( 0,0,A \right) $. We know that:
+		\begin{align*}
+			\frac{\partial f}{\partial x}  &= 1-2x \\
+			\frac{\partial f}{\partial y} &= 2-6y \\
+		.\end{align*}
+		such that:
+		\begin{align*}
+			\nabla f = \left( 1-2x \right) \hat{i} + \left( 2-6y \right) \hat{j} \implies - \nabla f = \left( 2x-1 \right) \hat{i} + \left( 6y-2 \right) \hat{j} 
+		.\end{align*}
+		The curve is given by:
+		\begin{align*}
+			\vec{r}\left( t \right)  = x\left( t \right) \hat{i} + y\left( t \right) \hat{j}
+		.\end{align*}
+		Where $x'\left( t \right)  = 2x\left( t \right) -1$ and $y'\left( t \right)  = 6y\left( t \right) -2$. This is in parametric form and we can convert to cartesian form by writing the derivatives as:
+		\begin{equation}
+			\frac{dy}{dx} = \frac{6y-2}{2x-1}
+		\end{equation}
+		and solving this differential equation to get:
+		\begin{equation}
+			3y = \left( 2x-1 \right) ^3 + 1
+		\end{equation}
+	\end{example}
+\end{itemize}
