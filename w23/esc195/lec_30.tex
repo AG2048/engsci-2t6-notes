@@ -38,23 +38,23 @@ March 27, 2023
 			\implies \frac{1}{6} \ln|6y-2| &=  \frac{1}{2}\ln|2x-1| + C \\
 			\therefore 6y-2 &= \left( 2x-1 \right) ^3e^C \\
 		.\end{align*}
-		We need to find what $e^C$ is, so we start from our initial condition: $x=0, y=0$
+		We need to find what the integration constant: $e^C$ is, so we start from our initial condition: $x=0, y=0$
 		\begin{align*}
 			-2 &= \left( -1 \right) ^3e^C \\
 			\therefore e^c &= 2 \\
 			\therefore 3y = \left( 2x-1 \right) ^3+1
 		.\end{align*}
-		And this is our steepest descent path. Everywhere along the curve $C$, the direction is the steepest downhill descent.
+		And this is our steepest descent path. Everywhere along the curve $C$, the direction is the steepest downhill descent, and the path itself is the steepest descent
 	\end{example}
 \item The Chain Rule:
 	\begin{theorem}
 		Chain Rule Along a Curve:
 		\begin{align*}
 			\frac{d}{dt}\left[ f\left(\vec{r}\left( t \right)  \right)  \right] &= \nabla f\left( \vec{r}\left( t \right)  \right) \cdot \vec{r}~'\left( t \right) \\
-			&= \frac{\partial f}{\partial x} \cdot \frac{\partial x}{\partial t} +\frac{\partial f}{\partial y} \cdot \frac{\partial y}{\partial t} +\frac{\partial f}{\partial z} \cdot \frac{\partial z}{\partial t}  \\
+			&= \frac{\partial f}{\partial x} \cdot \frac{d x}{d t} +\frac{\partial f}{\partial y} \cdot \frac{d y}{d t} +\frac{\partial f}{\partial z} \cdot \frac{d z}{d t}  \\
 			&= \nabla f \cdot  \vec{T} \cdot \left( \frac{ds}{dt} \right)  \\
 		\end{align*}
-		which is unit tangent * change in length
+		which is unit tangent $\times $ change in length
 	\end{theorem}
 	\begin{example}
 		Assume we have function $\vec{r}\left( t \right)  = x\left( t \right) \hat{i} + y\left( t \right) \hat{j}$ which describes path or position, say:
@@ -96,19 +96,16 @@ March 27, 2023
 			V\left( t \right) = \ell\left( t \right)  \cdot  h\left( t  \right) \cdot d\left( t \right) \text{ and } \vec{q}\left( t \right) = \left( \ell, h, d \right)  \\
 		\end{equation}
 		Using chain rule for multivariable functions:
-		\begin{equation}
-			\frac{dV\left( t \right) }{dt}= \nabla V\left( \vec{q}\left( t \right)  \right) \cdot  \vec{q}~'\left( t \right)\\
-			\implies \nabla V = \left( \frac{\partial V}{\partial \ell} , \frac{\partial V}{\partial h} , \frac{\partial V}{\partial d}  \right)  = \left(hd, \ell d , h \ell \right) 
-		\end{equation}
-		From this we get:
-		\begin{equation}
-			\implies \vec{q}~'\left( t \right) = \left(\frac{d\ell}{dt}, \frac{dh}{dt}, \frac{dd}{dt} \right)  = \left( 3, -2, 5 \right)  
-		\end{equation}
+		\begin{align*}
+			\frac{dV\left( t \right) }{dt}&= \nabla V\left( \vec{q}\left( t \right)  \right) \cdot  \vec{q}~'\left( t \right)\\
+										  &\implies \nabla V = \left( \frac{\partial V}{\partial \ell} , \frac{\partial V}{\partial h} , \frac{\partial V}{\partial d}  \right)  = \left(hd, \ell d , h \ell \right) \\
+										  &\implies \vec{q}~'\left( t \right) = \left(\frac{d\ell}{dt}, \frac{dh}{dt}, \frac{dd}{dt} \right)  = \left( 3, -2, 5 \right)  
+		\end{align*}
 		Therefore, at the initial point of $\left( 3,-2,5 \right) $
 		\begin{equation}
 			\frac{dV}{dt} = 3hd - 2\ell d + 5 \ell h = 3 \cdot 3\cdot 4 - 2\cdot 2\cdot 4 +5\cdot 2\cdot 3 = 50 \frac{\text{m}^3}{\text{s}}		
 		\end{equation}
-		From this, expanding to the 3 dimensions so we can try solving using the old fashioned method of subbing in each variable
+		As a comparison, we can also solve this using the traditional method of subbing in variables:
 		\begin{align*}
 			\ell &=  2+3t \\
 			h &= 3-2t \\
@@ -124,6 +121,7 @@ March 27, 2023
 		\begin{align*}
 			x &= x\left( t,s \right) \\
 			y &=  y\left( t,s \right)  \\
+			f &= f\left( x,y \right)  \\
 		.\end{align*}
 		But we can still follow the same process of applying chain rule, we just have two rates of changes now
 		\begin{align*}
@@ -131,18 +129,19 @@ March 27, 2023
 			\frac{\partial f}{\partial s} &= \frac{\partial f}{\partial x} \frac{\partial x}{\partial s} + \frac{\partial f}{\partial y}  \frac{\partial y}{\partial s}  \\
 		.\end{align*}
 	\end{idea}
-\item \textbf{Implicit Differentiation:}
+\item \textbf{Implicit Differentiation:}\\
+	Let us have this function
 	\[
-	u\left( x,y \right) = 0 \implies \frac{dy}{dx} = 0
+	u\left( x,y \right) = 0 \implies \frac{dy}{dx} = ?
 	.\] 
 	Let $x = t$, $y = y\left( t \right) $, Then we have $u = u\left( t,y\left( t \right)  \right) $ because we chose $x=t$, so $y$ must be a function of $t$
 	\begin{align*}
-		\frac{du}{dt} &= \frac{\partial u}{\partial t} \frac{\partial x}{\partial t} + \frac{\partial u}{\partial y} \frac{\partial y}{\partial t}  \\
+		\frac{du}{dt} &= \frac{\partial u}{\partial x} \frac{d x}{d t} + \frac{\partial u}{\partial y} \frac{d y}{d t}  \\
 	\end{align*}
 	Following the original statement that $u\left( x,y \right) =0$, $u\left( t, u\left( t \right)   \right) = 0$, $\therefore \frac{du}{dt} = 0$ since $u$ is constant.
 	\[
 	x = t\\
-	\therefore \frac{dx}{dt}= 1 \& \frac{dy}{dt} = \frac{dy}{dx}
+	\therefore \frac{dx}{dt}= 1 \text{ and } \frac{dy}{dt} = \frac{dy}{dx}
 	.\] 
 	Therefore
 	\begin{align*}
@@ -177,10 +176,10 @@ March 27, 2023
 	 \therefore  C = 20-1^2-2^2 = 15
 	.\] 
 	$C = 15 \implies 20 - x^2 - y^2 = 15 \implies$ level curve: $x^2 + y^2 =5$ \\
-	We have the tangent vector $\vec{t}$. (not the unit tangent)
+	We have the tangent vector $\vec{t}$. (not the unit tangent, but also perpendicular to $\vec{r}$):
 	\begin{align*}
-		\vec{r}\left( 1,2 \right)  \\
-		\therefore  \vec{t} \cdot  \vec{r} = \left( t_1,y_2 \right) \cdot  \left(2,-1  \right)  =  0 \\
+	\text{Starting point: }	\vec{r}\left( 1,2 \right)  \\
+		\therefore  \vec{t} \cdot  \vec{r} = \left( t_1,t_2 \right) \cdot  \left(1,2  \right)  =  0 \\
 		\implies t_1\cdot 1+t_2 \cdot 2 = 0
 	\end{align*}
 	Choose $t_1 = 2, t_2 = -1$ $\therefore \vec{t} = \left( 2,-1 \right) $ is the tangent vector
@@ -191,8 +190,8 @@ March 27, 2023
 	\end{align*}
 \end{example}
 \begin{theorem}
-	For level curve: Since the gradient function produces a zero result when dot product with tangent, we say gradient function is normal to tangent\\
-	let's define a function $f$ to represent the curve:
+	For level curve, the gradient will be perpendicular to the tangent at a specific point. \\
+	Proof: let's define a function $f$ to represent the curve:
 	 \begin{align*}
 		 f\left( x,y \right)  &= C, \text{ let }\vec{r}\left( t \right)  = x\left( t \right) \hat{i} + y\left( t \right) \hat{j} && \vec{t} = \vec{r}~'\left( t \right) \\
 		\implies f\left( \vec{r}\left( t \right)  \right)  &=  C \\
