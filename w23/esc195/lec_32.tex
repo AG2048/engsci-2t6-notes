@@ -1,0 +1,152 @@
+
+\begin{itemize}
+	\item Last example for normal planes
+		\begin{example}
+			We have two surfaces: $S_1: xy = az^2$ and $S_2: z^2 = b-x^2-y^2$. Putting them in function form on level plane:
+			\begin{align*}
+				f\left( x,y,z \right)  = xy-az^2 &= 0\\
+				g\left( x,y,z \right)  &=  x^2 + y^2 + z^2 = b \\
+			.\end{align*}
+			Then we have
+			\begin{align*}
+				\nabla f &= \left( y, x, -2az \right) \\
+				\nabla g &=  \left( 2x,2y,2z \right)  \\	
+			\end{align*}
+			We have dot product of those two:
+			\begin{equation}
+				\nabla f \cdot  \nabla g = 4sy - 4az^2 = 4\left( xy-az^2 \right)  = 0 \\
+			\end{equation}
+			Note here, this tells us that the two surfaces are always normal to each other everywhere they intersect, since their tangent planes' normal vectors are normal.
+		\end{example}
+
+\end{itemize}
+\section{Maximum and Minimum Values}
+March 31, 2023
+\begin{itemize}
+	\item \textbf{14.7 Maximum and Minimum Values}
+		\begin{definition}
+			$f$ is said to have a local maximum at $\vec{x_0} \iff f\left( \vec{x_0} \right)  \ge f\left( \vec{x} \right) $ for $\vec{x}$ in some neighbourhood of $\vec{x_0}$ \\
+			This is almost identical to the wording in single variable case, just replacing the original $x$ with $\vec{x}$ \\
+			$f$ is said to have a local mimimum at $\vec{x_0} \iff f\left( \vec{x_0} \right) \le f\left( \vec{x} \right) $ for $\vec{x}$ in some neighbourhood of $\vec{x_0}$
+		\end{definition}
+		\begin{theorem}
+			if $f$ has a local extreme value at $\vec{x_0}$, then either $\nabla f\left( \vec{x_0} \right)  = 0$ or $\nabla f\left( x_0 \right) $ DNE.\\
+			This is just like single variable case.
+		\end{theorem}
+		\begin{proof}
+			let $g\left( x \right) =f\left( x,y_0 \right) $ be function with a fixed $y_0$ value\\
+			If $f$ has a maximum at $x_0$, then $g$ has a maximum at $x_0$. In this case, the derivative of $g$ will just be a partial derivative of $f$ with respect to $x$
+			\begin{equation}
+				\therefore \frac{dg}{dx}\left( x_0 \right)  = 0 = \frac{\partial f}{\partial x} \left( x_0,y_0 \right) 
+			\end{equation}
+		From this, lets suppose we have function $z = f\left( x,y \right)$ and make a function $h\left( x,y,z \right)  = z - f\left( x,y \right) $.\\ This implies $\nabla h = \left( -f_x, -f_y, 1 \right)  = \hat{k}$. This shows that the normal is perpendicular to the vector k.\\
+		\end{proof}
+		\begin{idea}
+			if the planes have zero slope, than the normal is zero since $\nabla f = \vec{0}$
+		\end{idea}
+		\begin{definition}
+			points where $\nabla f = \vec{0}$ or DNE are called critical points	
+		\end{definition}
+		\begin{definition}
+			Points where $\nabla f = \vec{0}$ called stationary points (at that point in either direction you are not going up or down)
+		\end{definition}
+		\begin{definition}
+			stationary points where are not local extremes are called saddle points
+		\end{definition}
+		\begin{idea}
+			just because the tangent plane is horizontal, doesn't mean you have a maximum or a minimum
+		\end{idea}
+		\begin{example}
+		Lets begin with a simple function $f\left( x,y, \right)  = 20 - x^2 - y^2$, $\nabla f = \left( -2x, -2y \right)$.\\
+		We set $\nabla f = \vec{0} \implies -2x = 0, -2y = 0 \implies x = 0, y = 0$ 
+		\begin{equation}
+			\therefore (0,0) \text{ is a stationary point.}
+		\end{equation}
+		set $x = h, y = k$ where $h,k$ are some tiny numbers. At origin, $f\left( 0,0 \right)  = 20, f\left( h,k \right) = 20-h^2-k^2 < 20~ \forall h,k>0$
+		\end{example}
+		\begin{example}
+			another surface $f\left( x,y \right)  = xy$, $\nabla f = \left( y,x \right) $ \\
+			Set $\nabla f = \left( 0,0 \right)  \implies y = 0, x = 0$ \\
+			$f\left( 0,0 \right)  = 0$, $f\left( h,k \right)  = hk$ \\
+			For $h,k > 0$ or $h,k < 0$, $hk>0$ \\
+			But if we have them alternating signs, $hk < 0$, showing that this is a saddle point
+		\end{example}
+		\begin{example}
+			$f\left( x,y \right)  = 2x^2 + y^2 - xy - 7y\implies\nabla f = \left( 4x-y, 2y-x-7 \right) $\\
+			$\nabla f = \vec{0} \implies y = 4x, yx-x-7 = 0 \implies x = 1, y = 4$\\
+			$f\left( 1,4 \right)  = 2 + 16 - 4 - 28 = 14$
+			\begin{align*}
+				f\left( 1.01, 4.01 \right)  &= -13.9998\\
+				f\left( 1,01,3.99 \right)  &=  -13.9996 \\
+				f\left( 0.99, 4.01 \right) &= -13.9996\\
+				f\left( 0.99, 3.99 \right) &= -13.9998 \\
+			\end{align*}
+			This seems to be a minimum point
+		\end{example}
+	\item It's perfectly possible for a maximum or a minimum that occurs along a line!\\
+		Using a donut shape as an example, the equation is \[
+		f\left( x,y \right)  = z =  \left( a^2 - \left( \sqrt{x^2 + y^2} -R \right) ^2 \right) ^\frac{1}{2}
+		.\] 
+		\[
+			\nabla f = \left[ \frac{1}{2}\left( \ldots \right) ^{-\frac{1}{2}}\left( -2 \right) \left( \sqrt{\ldots} -R \right) \frac{1}{2}\left( x^2 + y^2 \right) ^{-\frac{1}{2}} \cdot 2x, \frac{1}{2}\left( \ldots \right) ^{-\frac{1}{2}}\left( -2 \right) \left( \sqrt{\ldots} -R \right) \frac{1}{2}\left( x^2 + y^2 \right) ^{-\frac{1}{2}} \cdot  2y\right] 
+		.\] 
+		\[
+		 \nabla f = 0 \implies \sqrt{x^2 + y^2 = R}\\
+		 f\left( x^2 + y^2 = R^2 \right)  = \left( a^2 - \left( \sqrt{R^2}  - R \right) ^2 \right) ^{\frac{1}{2}} = a\\
+		.\] 
+		This is the top surface of the donut shape, and shows that the critical point CAN be a curve.\\
+		(question): what about neighboring point, aren't they the "same" height?
+		\begin{example}
+			cone $f\left( x,y \right)  = -\sqrt{x^2 + y^2} $, $\nabla f = \left( -\left( x^2 + y^2 \right) ^{-\frac{1}{2}}\cdot 2x, -\left( x^2 + y^2 \right) ^{-\frac{1}{2}} \cdot 2y \right) $ This is DNE at $\left( 0,0 \right) $
+		\end{example}
+		\begin{theorem}
+			Second Derivative\textbf{s} Test:\\
+			Note the strategic "s" at the end of the "derivatives"?\\
+			For $f\left( x,y \right) $ with continuous second order partial, and $\nabla f\left( x_0,y_0 \right)  = 0$, set \[
+			A = \frac{\partial ^2f\left( x_0,y_0 \right) }{\partial x^2} , B = \frac{\partial ^2f\left( x_0,y_0 \right)}{\partial x \partial y}, C = \frac{\partial ^2f\left( x_0,y_0 \right) }{\partial y^2} 
+			.\] 
+			and form the discriminant $ D = AC-B^2$\\
+			\begin{enumerate}
+				\item if $D < 0$, then $\left( x_0,y_0 \right) $ is a saddle point\\
+				\item if $D > 0$, $A,C > 0$ $\left( x_0,y_0 \right) $ is a local minimum\\
+				\item if $D > 0$, $A,C < 0$ $\left( x_0,y_0 \right) $ is a local maximum\\
+				\item if $ D = 0$, you know nothing
+			\end{enumerate}
+			(question) can $D=0$?
+		\end{theorem}
+		\begin{example}
+			$f\left( x,y \right) = xy$ 
+			\[
+			f_x = y, f_{xy} = 0 = A\\
+			f_y = x, f_{yy} = 0 = C\\
+			f_{xy} = 1 = B\\
+			.\] 
+			$\therefore D = AC-B^2 = -1 < 0$, therefore $\left( 0,0 \right) $ is a saddle point.
+		\end{example}
+		\begin{example}
+			$f\left( x,y,z \right)  = 2x^2 + y^2 -xy - 7y, \nabla f = 0$ at $\left( 1,4 \right) , f\left( 1,4 \right)  = -14$ 
+			\begin{align*}
+				f_x &= 4x-y\\
+				f_y &= 2y-x-7 \\
+				f_{x x} &= 4 = A\\
+				f_{yy} &= 2 = C\\
+				f_{xy} &= -1 = B \\
+			.\end{align*}
+			$ \therefore  D = 8 - 1 = 7 > 0$ and $A = 4 > 0$ which shows it's a local minimum
+		\end{example}
+	\item Absolute Extreme Values\\
+		\begin{theorem}
+			if $f$ is continuous on a bounded, closed set, then $f$ takes on both an absolute minimum and an absolute maximum on that set.\\
+			Basically: if domain is not infinite, we have both abs max and abs min
+		\end{theorem}
+		\begin{example}
+			$f\left( x,y \right)  = \left( x-4 \right) ^2 + y^2$, we want to find abs max and min\\
+			On set $\left\{ \left( x,y \right) : 0 \le  x \le  2, x^3 \le  y \le 4x \right\} $. Geometrically, this function's input is the area between the $ y = 4x$ and $y = x^3$ curves for $x \ge  0$\\
+			We first start looking for INTERNAL extreme values:
+			\[
+			 \nabla f = \left( 2\left( x-4 \right) , -2y \right) \\
+			 \nabla f = 0 \implies x = 4, y = 0. \text{ This is not within the set. }
+			.\] 
+			(This example continues next lecture)
+		\end{example}
+\end{itemize}

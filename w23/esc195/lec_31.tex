@@ -1,0 +1,189 @@
+\section{Tangent Planes and Linear Approximations}
+March 30, 2023
+\begin{itemize}
+	\item We were working with 2D curves, we are thinking these curves as LEVEL CURVES of 3D surfaces. We find that: Gradient vector is always normal to the tangent. We can use this property to find normal lines using gradient vector, and find tangent line using tangent vector.
+		\[
+		\vec{t} = \left( \frac{\partial f}{\partial y} ,-\frac{\partial f}{\partial x}  \right) 
+		.\] 
+		\begin{example}
+			We have a circle $ c^2 + y^2 = 9$, or $f\left( x,y \right) = c$. We then have $f_x = 2x, f_y = 2y$\\
+			Therefore, tangent line is:
+			\begin{equation}
+				\left( x-x_0 \right) 2x_0 + \left( y-y_0 \right) 2y_0 = 0
+			\end{equation}
+			USING
+			\begin{equation}
+				\left( x_0,y_0 \right)  = \left( \frac{3}{\sqrt{2}}, \frac{3}{\sqrt{2} } \right) 
+			\end{equation}
+			Tangent line:
+			\begin{equation}
+				\left( x-\frac{3}{\sqrt{2} } \right) 2 \frac{3}{\sqrt{2} } + \left( y-\frac{3}{\sqrt{2} } \right) 2 \frac{3}{\sqrt{2} } = 0 
+			\end{equation}
+			\begin{equation}
+				y = \frac{6}{\sqrt{2} }-x
+			\end{equation}
+			This gives us a tangent line to the circle.\\
+			At the same time, the normal line at that point is: $y=x$
+		\end{example}
+	\item Function of 3 variables:
+		Level surfaces is $f\left( x,y,z \right) = C$. The level surface will be a surface in 3D plane:\\
+		\begin{idea}
+			Gradient vector $\nabla f$ is perpendicular to the surface, or we can say it's perpendicular to the tangent plane
+		\end{idea}
+\begin{example}
+	we have $\vec{r}(t) = x(t)\hat{i} + y(t) \hat{j} + z(t) \hat{k}$ This is any curve on surface
+	\begin{align*}
+		\therefore f\left( x(t),y(t),z(t) \right)= f\left( \vec{r}(t) \right) = C \\
+	\end{align*}
+	we have: (Note here's some equation about chain rule, and how gradient dot tangent to this curve is 0\\
+	From this we can conclude that the gradient will be perpendicular to any tangent line, showing it's normal to the whole surface\\
+\end{example}
+\begin{idea}
+	tangent plane is formed by the tangent vector of any curve on the surface at that point
+\end{idea}
+\begin{example}
+	Suppose we now have $f\left( x,y, z\right)=x^2+y^2+z^2 = 25 = C $ (this is a sphere)
+	\begin{equation}
+		\nabla f = \left( 2x,2y,2z \right) = 2\left( x,y,z \right) 
+	\end{equation}
+	Drawing a 3D curve showing the level surface, we have $\vec{x_0} = \left( x_0,y_0,z_0 \right) $ and we form a level plane. Any vector $\vec{x}$ on this level plane will:
+	\begin{align*}
+		\left( \vec{x}-\vec{x_0} \right) \text{ is perpendicular to }\nabla f\\
+		\left( \vec{x} -\vec{x_0}\right) \cdot \nabla f\left( \vec{x_0} \right)  &= 0 \\
+	.\end{align*}
+	This is the equation of tangent plane to surface $f\left( x,y,z \right)  = C$ at $\vec{x_0}$
+\end{example}
+\begin{example}
+	We have $x^2+y^2+z^2=25$, $\nabla f = 2\left( x,y,z \right) $. At point $\left( 0,5,0 \right) $ on this sphere, the tangent plane to that point will be a plane parallel to the xy plane, $y=5$\\
+	We check this:
+	 \begin{align*}
+		 \left( x-x_0 \right) 2x_0 + \left( y-y_0 \right) 2y_0 + \left( z-z_0 \right) 2z_0 &=  0 \\
+		 \left( y-5 \right) 10 &= 0 \\
+		 y&= 5 \\
+	.\end{align*}
+	Checking the normal line, we expect a line that's the y axis:
+	\begin{align*}
+		\vec{r}(q) &= \vec{x_0} + q \nabla f\left( \vec{x_0} \right)  \\
+		x &=  x_0 + qf_x \\
+		y &= y_0 + qf_y \\
+		z &=  z_0 + qf_z \\
+		\text{so}\\
+		x &=  0 \\
+		y &=  5 + 10q \\
+		z &=  0 \\
+	.\end{align*}
+\end{example}
+\begin{example}
+	Another example: $xy^2 + 2z^2 = 12$ at $\left( 1,2,2 \right) $ 
+	\begin{align*}
+		f_x &=  y^2 =  4 \\
+		f_y &= 2xy =  4  \\
+		f_z &=  4z =  8 \\
+	.\end{align*}
+	therefore the normal line is:
+	\begin{align*}
+		x &= 1+4q\\
+		y &=  2+4q \\
+		z &= 2 +8q\\
+	.\end{align*}
+\end{example}
+\begin{warning}
+Make sure the point actually lies on the plane!!!
+\end{warning}
+\begin{example}
+	Having 2 elipsoid:
+	\[
+	f = x^2 +y^2 + z^2 - 8x-8y-6z+24 = 0\]
+	\[
+	g = x^2 + 3y^2 + 2z^2 = 9\]\[
+	P\left( 2,1,1 \right) 
+	.\] 
+	Gradient of sphere:
+	\begin{align*}
+		\nabla f &=  \left( 2x-8 \right) \hat{i} + \left( 2y-8 \right) \hat{j} + \left( 2z-6 \right) \hat{k} \\
+		\nabla f\left( 2,1,1 \right)  &= \left( -4,-6,-4 \right) \\
+		\nabla g &=  2x\hat{i} + 6y\hat{j} + 4z\hat{k} \\
+		\nabla g\left( 2,1,1 \right)  &= (4,6,4) = -\nabla f
+	.\end{align*}
+	This shows that $f$ and $g$ are parallel at that point, and that they touch at that point. So they SHARE a tangent plane
+\end{example}
+\begin{example}
+	We now have a sphere and a parabaloid:
+\[
+f = x^2 + y^2 + z^2 - 4y-2z + 2 = 0\]\[
+g = 3x^2 + 2y^2 -2z = 1\]\[
+P\left( 1,1,2 \right) 
+.\] 
+\begin{align*}
+	\nabla f &= 2x\hat{i} + \left( 2y-4 \right) \hat{j} + \left( 2z-2 \right) \hat{k} \\
+	\nabla f\left( 1,1,2 \right)  &=  \left( 2,-2,2 \right) \\
+	\nabla g &= 6x\hat{i} + 4y\hat{j} - 2\hat{k} \\
+	\nabla g\left( 1,1,2 \right)  &=  \left( 6,4,-2 \right)  \\
+.\end{align*}
+Check their relationship, are they perpendicular?
+\begin{equation}
+	\nabla f\left( 1,1,2 \right)  \cdot  \nabla g\left( 1,1,2 \right)  = 12 - 8 - 4 = 0
+\end{equation}
+So these two surfaces are perpendicular at that point
+\end{example}
+\begin{example}
+	A space curve:
+	\[
+	\vec{r}(t) = \frac{3}{2}\left( t^2+1 \right) \hat{i} + \left( t^4+1 \right) \hat{j} + t^3\hat{k}
+	.\] 
+	Ellipsoid:
+	\[
+	x^2 + 2y^2 + 3z^2 = 20
+	.\] 
+	Point:
+	\[
+	P(3,2,1)
+	.\]
+	So the line intersects the curve at that point, we want to show that the line is perpendicular to the curve at the intersection:\\
+	For the surface:
+	\begin{align*}
+		\nabla f &= \left( 2x,4y,6z \right) \\
+		\nabla f\left( 3,2,1 \right)  &=  \left( 6,8,6 \right)  \\
+	.\end{align*}
+	For the curve:
+	\begin{align*}
+		\vec{r}(t=1) &=  \left( 3,2,1 \right)  \\
+		\vec{r}~' (t) &=  \left( 3t , 4t^3, 3t^2 \right)  \\
+		\vec{r}~'\left( t=1 \right)  &=  \left( 3,4,3 \right)  = \frac{1}{2}\nabla f \\
+	.\end{align*}
+	So the direction vector of the curve is parallel to the normal vector of the surface, showing that this curve is normal to the plane at ths intersection
+\end{example}
+\begin{example}
+	Ellipsoid:
+	\[
+	x^2 + y^2 + 2z^2 = 7
+	.\] 
+	On ths ellipsoid there's a bee at point $\left( 1,2,1 \right) $ and the bee is flying away normal to the surface, but hits a plane.\\
+	Let's first find the normal line / direction vector:
+	\begin{align*}
+		\nabla f &=  \left( 2x,2y,4z \right)\\
+		\implies \nabla f\left( 1,2,1 \right)  &= \left( 2,4,4 \right) 
+	.\end{align*}
+	Normal line will be:
+	\begin{align*}
+		x &=  1 + 2q \\
+		y &=  2+4q \\
+		z &=  1+4q \\
+	.\end{align*}
+	Position vector follows this line:
+	\begin{equation}
+		\vec{r}(q) = \left( 1+2q \right) \hat{i} + \left( 2+4q \right) \hat{j} + \left( 1+4q \right) \hat{k}
+	\end{equation}
+	we know the speed is 4 m/s, $\lVert \vec{r}~'(t) \rVert  = 4$ but $\lVert \vec{r} ~'(q) \rVert  = 6$. We can scale it down a bit, $q = \frac{2}{3}t$ so you have $\lVert \vec{r} ~ ' \left( \frac{2}{3}q \right) \rVert = 4$ 
+	\begin{equation}
+		\therefore \vec{r}(t) = \left( 1+\frac{4}{3}t \right) \hat{i} + \left( 2+ \frac{8}{5}t \right) \hat{j} + \left( 1+\frac{8}{3}t \right) \hat{k}
+	\end{equation}
+	Intersection of this line with the plane (when the bee hits the plane). The plane is $2x+3y+z = 49$. Sub in $x,y,z$ into the equation for the line:
+	\begin{align*}
+		2\left( 1+\frac{4}{3}t \right) + 3\left( 2+\frac{8}{5}t \right)  + \left( 1+\frac{8}{3}t \right) &= 49 \\
+		\frac{40}{3}t &=  40 \\
+		t &=  3 \\
+	.\end{align*}
+	So the bee hits the plane after 3s, and it ends up at: $\left( 5,10,9 \right) $
+\end{example}
+\end{itemize}
