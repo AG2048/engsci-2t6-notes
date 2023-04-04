@@ -144,9 +144,93 @@ March 31, 2023
 			On set $\left\{ \left( x,y \right) : 0 \le  x \le  2, x^3 \le  y \le 4x \right\} $. Geometrically, this function's input is the area between the $ y = 4x$ and $y = x^3$ curves for $x \ge  0$\\
 			We first start looking for INTERNAL extreme values:
 			\[
-			 \nabla f = \left( 2\left( x-4 \right) , -2y \right) \\
+			\nabla f = \left( 2\left( x-4 \right) , -2y \right) \]\[
 			 \nabla f = 0 \implies x = 4, y = 0. \text{ This is not within the set. }
 			.\] 
-			(This example continues next lecture)
+		Thus in this example, what we really care about is the endpoints.\\
+		However, note that in this case, the abs max and min can occur on the entire boundary.\\
+		\\
+		Part 1: boundary $y = x^3, 0 \le  x\le 2$\\
+		We first parametrize the curve:
+		\begin{align*}
+			x = t, y = t^3\\
+			\vec{r_1} &=  t\hat{i} + t^3\hat{j}, 0 \le  t \le  2 \\
+			f_1(t) &= f\left( \vec{r_1}\left( t \right)  \right) ~ \text{What is the max/min along this?}\\
+			f'(t) = \nabla f \cdot  \vec{r} ~ ' &= \left( 2\left( t-4 \right) , 2t^3 \right) \cdot \left( 1, 3t^2 \right) \\
+												&= 2t-8t+6t^5\\
+		.\end{align*}
+		Set $f_1'(t) = 0 \implies t\left( 1+3t^4 \right)  = 4 \implies t = 1$ is the only solution. This gives us the point $(1,1)$ which is indeed on our curve. So this is a useful point to know things about. Note $f(1,1) = 10$\\
+		At that point,  $f_1''(t) = 2 + 30t^4 = 32 > 0$ at $(1,1)$, so local min.\\
+		\\
+		Part 2: $ y = 4x$ boundary: $x = t, y = 4t, 0 \le  t \le  2$
+		\begin{align*}
+			f_2(t) &= \left( t-4 \right) ^2 + \left( 4t \right) ^2 = 17t^2 - 8t + 16\\
+			f_2'(t) &=  34t-8 \\
+		.\end{align*}
+		Set $f_2'(t) = 0\implies t = \frac{8}{34} = \frac{4}{17}\implies \left( \frac{4}{17}, \frac{16}{17} \right) $ \\
+		Eval 2nd derivative: $f_2''(t) = 34 > 0$, local minimum at $f\left( \frac{4}{17}, \frac{16}{17}  \right) = 15.06$ 
+		\\
+		\\
+		We are missing MAXIMUM!!! For this, we have to check the endpoints, where the two curves intersect:\\
+		$f(0,0) = 16, f(2,8) = 68 \implies f(1,1) \text{ is abs min}, f(2,8) \text{ is abs max}$
 		\end{example}
+		\begin{idea}
+			Four things to check for abs max/min:\\
+			\begin{enumerate}
+				\item Check where $\nabla f$ DNE\\
+		\item Check where $\nabla f= \vec{0}$\\
+		\item Check boundaries\\
+		\item check end points of boundaries
+			\end{enumerate}
+		\end{idea}
+		\begin{example}
+			$f\left( x,y \right)  = xy^2 - x$ on $\left\{ \left( x,y \right) | x^2 + y^2 \le  3 \right\} $ \\
+			Find partials:
+			\begin{align*}
+				f_x = y^2-1, f_{xx} = 0\\
+				f_y = 2xy, f_{yy} = 2x\\
+				f_{xy} = 2y
+			.\end{align*}
+			We then have:
+			\begin{align*}
+				\nabla f = \vec{0} \implies y^2 - 1 = 0, 2xy = 0\\
+				y &= \pm 1 \\
+				x&= 0 \\
+				\text{zeros at: } \left( 0,1 \right) , \left(  0,-1\right) 			
+			.\end{align*}
+			$\left( 0,1 \right): A= f_{xx} = 0, C = f_{yy} = 2x = 0, B = f_{xy} = 2y = 2$ Which:
+			\[
+			D = AC-B^2 = -4 < 0,~ \therefore f(0,1)\text{ is a saddle pt.}
+			.\] 
+			$\left( 0,-1 \right): A= f_{xx} = 0, C = f_{yy} = 2x = 0, B = f_{xy} = 2y = -2$ Which:
+			\[
+			D = AC-B^2 = -4 < 0,~ \therefore f(0,-1)\text{ is a saddle pt.}
+			.\] 
+			Now lets check boundary:
+			$x^2 + y^2 = 3 \implies y^2 = 3 - x^2$, we have $f\left( y^2 = 3-x^2 \right)  = x\left( 3-x^2 \right) -x = 2x-x^3 = f_1(x)$ 
+			Find max along this curve using traditional methods:
+			\[
+			f_1'(x) = 2-3x^2, f_1'(x) = 0 \implies x^2 = \frac{2}{3} \implies x = \pm \sqrt{\frac{2}{3}}, y = \pm \sqrt{\frac{7}{3}} 
+			.\] 
+			Second derivative test:
+			\[
+			f_1''(x) = -6x \implies f_1''\left(\sqrt{\frac{2}{3}}\right) = -6\sqrt{\frac{2}{3}}  < 0 \text{ Local max}
+			.\] 
+			\[
+			f_1''\left( -\sqrt{\frac{2}{3}}  \right)  = 6\sqrt{\frac{2}{3}} > 0 \text{ local min} 
+			.\] 
+We have two internal saddle points, and we then have 2 maximum values, and two minimum values along the curve.\\
+\textbf{we are missing something}: If it's a single variable question, we can't have 2 maximum and 2 minimum (as we did this along the outer circle edge, implying something is missing. \\
+We are missing the endpoints:
+\begin{align*}
+	x = -\sqrt{3},  y &= 0 \implies f = \sqrt{3}   \\
+	x = \sqrt{3} y &=  0 \implies f = -\sqrt{3}  \\
+\end{align*}
+Then we have $f\left( -\sqrt{3} ,0 \right)  = \sqrt{3} $ is abs max, $f\left( \sqrt{3} , 0 \right) = -\sqrt{3} $ is abs min.\\
+This is why we don't usually convert it to 1 single variable, if we parametrize it: 
+\[
+\vec{r}(t) = \sqrt{3} \cos t \hat{i} + \sqrt{ 3}  \sin t \hat{j}
+.\] Using this, we get all 6 points
+		\end{example}
+
 \end{itemize}
