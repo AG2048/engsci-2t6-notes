@@ -1,0 +1,61 @@
+\section{14.8 Lagrange Multipliers}
+April 3, 2023
+\begin{itemize}
+	\item We want to maximize / minimize value of some function $f\left( x,y \right) $ subject to a side condition $g\left( x,y \right)  = k$ Similar to the boundary questions in previous problem.
+		\begin{enumerate}
+			\item Draw out level curves, we draw level curves of $f\left( x,y \right) = 0,1,2,3,4\ldots$.
+			\item We then draw out the condition $g\left( x,y \right)  = k$
+			\item Then what is the largest $f$ within this condition $g\left( x,y \right)  = k$? It's just where the $g\left( x,y \right)  = k$ curve just touches a level curve of $f\left( x,y \right) $
+		\end{enumerate}
+		For two curves to have one and only one intersection, they must share a common tangent line!\\
+		Since tangent vectors are parallel, then the gradient vectors must be parallel!
+		\begin{definition}
+			$\nabla g || \nabla f$ are parallel, or we can say $\nabla f = \lambda \nabla g$\\
+			Where $\lambda$ is constant, is the Lagrange Multiplier
+		\end{definition}
+	\item $g\left( x_0,y_0 \right) = k$, $f_x\left( x_0,y_0 \right)  = \lambda g_x\left( x_0,y_0 \right) $, $f_y\left( x_0,y_0 \right) = \lambda g_y\left( x_0,y_0 \right) $. Unknowns are $x_0,y_0,\lambda$.\\
+		Note if you know x, y already, no need to solve this complex system!!!
+	\item Now we expand to 3 dimension, $f\left( x,y,z \right) $ maximized within $g\left( x,y,z \right) = k$:\\
+		Same story:
+		\begin{align*}
+			g\left( x_0,y_0,z_0 \right)  &= k \\
+			f_x\left( x_0,y_0,z_0 \right) &= \lambda g_x\left( x_0,y_0,z_0 \right) \\
+			f_y\left( x_0,y_0,z_0 \right) &= \lambda g_y\left( x_0,y_0,z_0 \right) \\
+			f_z\left( x_0,y_0,z_0 \right) &= \lambda g_z\left( x_0,y_0,z_0 \right) \\
+		.\end{align*}
+		Here we have 4 unknowns and 4 equations.
+		\begin{example}
+			$f\left( x,y \right)  = x^2 - y^2$ on the circle $x^2 + y^2 = 1$ which is $g\left( x,y \right) = k$\\
+			Find partials:
+			\begin{align*}
+				f_x &= 2x, g_x = 2x\\
+				f_y &= -2y,  g_y= 2y
+			.\end{align*}
+			We solve that system of equations:
+			\begin{align*}
+				x_0^2 + y_0^2 &= 1 \\
+				2x_0 &= \lambda 2x_0\\
+				-2y_0 &= \lambda 2y_0 \\
+			.\end{align*}
+			We solve $x_0 = 0, \lambda = 1 \text{ or } y_0 = 0, \lambda = -1$\\
+			Case 1: $\lambda = 1 \therefore  y_0 = 0, x_0 = \pm 1$\\
+			Case 2: $\lambda = -1 \therefore  x_0 = 0, y_0 = \pm 1$\\
+			Now just try each of the 4 points:
+			\begin{align*}
+				f\left( 1,0 \right)  &= 1 \\
+				f\left( -1,0 \right)  &=  1 \\
+				f\left( 0, -1 \right)  &=  -1 \\
+				f\left( 0,1 \right)  &=  -1 \\
+			.\end{align*}
+			Then we know max and min
+		\end{example}
+		\begin{example}
+			$f\left( x,y \right)  = xy^2 - x$ or $g = x^2 + y^2 = 3$ \\
+			\[
+			\nabla f = \left( y^2 - 1, 2xy \right), \nabla g = \left( 2x, 2y \right) 
+			.\] 
+			$x^2 + y^2 = 3$, $y^2 - 1 = \lambda 2x$, $2xy = \lambda 2y$ Solving gives  $ y = 0$ or  $x = \lambda$.\\
+			Case 1:  $ y = 0 \implies x = \pm \sqrt{ 3} \implies f\left( \pm \sqrt{3} , 0 \right)  = \pm \sqrt{3} $ \\
+			Case 2: $ x = \lambda \implies 3 - x^2 - 1 = \lambda 2x \implies x^2 + \lambda 2x - 1 = 0 \implies x^2 + 2x^2 - 1 = 0 \implies x = \pm \sqrt{\frac{2}{3}} \implies y = \pm \sqrt{\frac{7}{3}} $ and we have $f\left( \pm \sqrt{\frac{2}{3}} , \pm \sqrt{\frac{7}{3}}  \right) = \pm \frac{4}{3 } \sqrt{ \frac{2}{3}} $
+		\end{example}
+\end{itemize}
