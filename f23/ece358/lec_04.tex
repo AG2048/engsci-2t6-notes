@@ -1,0 +1,233 @@
+\section{L04 Combos and stuff}
+Sep 20, 2023
+\begin{itemize}
+	\item Combos
+		\begin{theorem}
+			Assume event $A$ can happen $m$ ways and $B$ $n$ ways:\\
+			Rule of Product: A and B can happen $m\times n$ ways\\
+			Rule of Sum: A or B can happen $m + n$ ways
+		\end{theorem}
+		\begin{example}
+			You have 2 English, 5 Greek, and 10 French books.\\
+			Number of ways to select 2 different bats: $2\times 5 + 2\times 10 + 5\times 10$ \\
+			Number of ways to select any 2 bats: $17\times 16$
+		\end{example}
+		\begin{theorem}
+			Permutations:\\
+			$P(n,r)$ Select $r$ objects out of $n$ distinct objects where order matters\\
+			$P(n,r) = n \left( n-1 \right) \left( n-2 \right) \ldots \left( n-r+1 \right) = \frac{n!}{\left( n-r \right) !}$
+			Picking Green THEN Blue is different from picking Blue THEN Green.
+		\end{theorem}
+		\begin{example}
+			How many ways $n$ people can sit on a round table?\\
+			If it's a straight table, it would be $P\left( n,n \right) = n!$ \\
+			However, since it's a round table, rotation makes a lot of "different" positions actually the same. So we FIX one person, and it becomes:
+			$\frac{n!}{n} = \left( n-1 \right) !$
+		\end{example}
+		\begin{theorem}
+			If not all objects are distinct, but:\\
+			\begin{align*}
+				a_1 \text{ first}\\
+				a_2\ldots\\
+				a_3\ldots\\
+				ak\ldots\\
+			.\end{align*}
+			Then the combinations become:
+			\begin{equation}
+				\frac{n!}{a_1! \cdot a_2! \cdot a_3! \cdot \ldots \cdot  a_{k}!}
+			\end{equation}
+			The reason is now we reduce all possible combinations where only $a_i$ objects shuffle around, which doesn't create new combinations\ldots
+		\end{theorem}
+	\item Combinatorial argument
+		\begin{example}
+			Show \[
+			\frac{\left( k! \right) !}{\left( k! \right) ^{\left( k-1 \right) !}}
+			.\] 
+			Is an integer by a combinatorial argument.\\
+
+			Lets assume there are: 
+			\begin{align*}
+				k~ &\text{items of 1st kind}\\
+				k~ & \text{2nd}\\
+				k~ & \ldots\\
+				k~ & \left( k-1 \right) ! \text{ kind}
+			.\end{align*}
+			I have $k!$ total items. And we want to permute them. \\
+			Lets call $k! = n$, ways to permute would be:
+			\[
+			\frac{n!}{k! \cdot k! \cdot k! \cdot \ldots \cdot k!} = \frac{n!}{\left( (k!) \right) ^{\left( k-1 \right) !}} = \frac{\left( k! \right) !}{\left( k! \right) ^{\left( k-1 \right) !}}
+			.\] 
+		\end{example}
+		\begin{theorem}
+			Ways to permute $r$ objects out of $n$ with unlimited repetition = $n^{r}$
+		\end{theorem}
+		\begin{example}
+			Among 10 billion numbers $[1, \ldots, 10,000,000,000]$, how many contain the digit "1"?\\
+			We can convert numbers into a list of 10 numbers, each picking from 0 to 9. This represents all numbers from 0 to 9,999,999,999\\
+
+			How many DO NOT contain "1"? That's just $9^{10}$. We are picking from 0, 2, 3, 4, 5, 6, 7, 8, 9 for 10 positions.
+
+			We then subtract 10 billion with $9^{10}-1$. We must remove the "non-1" number of "0" cuz it's not in the original range.
+		\end{example}
+		\begin{theorem}
+			Combinations: select $r$ objects out of $n$ distinct objects but order does not matter\\
+			 \begin{equation}
+			 	C\left( n,r \right) = \frac{P\left( n,r \right) }{r!} =  \frac{n!}{r! \cdot  \left( n-r \right) !}
+			 \end{equation}
+			 We call this "n choose r" = binomial coefficient\\
+			 Side note: 
+			 \begin{equation}
+				 \left( x+y \right) ^{r} = \sum_{i=0}^{r} \begin{pmatrix} r \\ i \end{pmatrix} x^{i}y^{r-i}
+			 \end{equation}
+
+		\end{theorem}
+		\begin{example}
+			How many diagonals does a 10-sided polygon have?\\
+			$C(10,2) - 10$, we choose any 2 corners out of 10 possible corners. Subtract the 10 original sides.
+		\end{example}
+		\begin{example}
+			In how many ways we can select 3 distinct numbers fron $[1\ldots 300]$ such that their unique sum is divisble by 3?\\
+			100 numbers / 3 leaves remainder 0, add them together no remainder\\
+			100 numbers leave remainder 1 add together no remainder\\
+			100 numbers leave remainder 2 add together no remainder\\
+			Then we need to add combinations of picking 1 number from each\\
+			Answer:\\
+			$C\left( 100, 3 \right)  + C\left( 100,3 \right) + C\left( 100,3 \right)  + 100^3$
+		\end{example}
+		\begin{example}
+			11 scientist work on a secret project that they lock in a cabinet such that at least 6 scientists need to be present to unlock it.\\
+			What is the minimum number of cabinet locks to make this work?\\
+			What is the minimum number of keys per scientist?\\
+			\begin{enumerate}
+				\item have a lock for every possible combination of FIVE scientists. So 5 scientists can't open it. $C\left( 11, 5 \right) $. $\forall \text{ group of 5}, \exists \text{ unique lock they cannot unlock}$
+				\item $C\left( 10, 5 \right) $ Keys are required. For any scientist, they should be able to join any group of 5 from the remaining 10 people, and have a key that fits the job.
+			\end{enumerate}
+		\end{example}
+\end{itemize}
+
+\section{L04 Master Method}
+
+\begin{itemize}
+	\item Recurrence
+	\begin{theorem}
+		Let $a \ge 1,~ b > 1$ and $f(n)$ be recurrent function:\\
+		\begin{equation}
+			T(n) = a T\left( \frac{n}{b} \right) + f(n)
+		\end{equation}
+		Has solution:\\
+		if $f(n)=\mathcal{O}\left( n^{\log_b a - \epsilon} \right) $ for $\epsilon > 0$ then $T(n) = \Theta \left( n^{\log_b a} \right) $ \\
+		if $f(n) = \Theta\left( n^{\log_b a} \right) $ Then $T(n) = \Theta\left( n^{ \log_b a} \log n \right) $ \\
+		if $f(n)=\Omega\left( n^{\log_b a + \epsilon} \right) $ for $\epsilon > 0$ and $af\left( \frac{n}{b} \right)  \le  cf\left( n \right) $ for $0 < c < 1$ then $T(n) = \Theta\left( f\left( n \right)  \right) $\\
+	\end{theorem}
+	\begin{example}
+		MERGESORT (A, p, v)\\
+		if $P < r$:\\
+		    $q = \left\lfloor \frac{p + r}{2} \right\rfloor$\\
+			Mergesort(A, q+1, r) (This is O(n))\\
+			Mergesort(A, P, q) (O(n))\\
+			MERGE(A, p, q, r) (O(n))\\
+		Time complexity would just be:
+		\begin{equation}
+			T(n) = 2T\left( \frac{n}{2} \right)  + \mathcal O(n) = \Theta\left( n \log n \right) 
+		\end{equation}
+	\end{example}
+	\begin{example}
+		If function is upper bounded
+		If function is tightly bounded by something, function itself matters.\\
+		If function is lower bounded, then time complexity is just f(n)
+	\end{example}
+	\begin{example}
+		$T\left( n \right) = 2T\left( \frac{n}{2} \right) + \mathcal O(n)$ \\
+		This is 2nd case, where:
+		\begin{align*}
+			a &=  2 \\
+			b &= 2 \\
+			f\left( n \right) &= \mathcal O \left( n \right) = \Theta\left( n^{\log_2 2} \right)  \\
+		.\end{align*}
+		So $T(n) = \Theta\left( n \log n \right) $
+	\end{example}
+	\begin{example}
+		$T(n) = T\left( \frac{2n}{3} \right) + 1$\\
+		This is case 2, where
+		\begin{align*}
+			a &=  1 \\ b &= \frac{3}{2} \\ f\left( n \right) &= 1 \\
+			\log_{\frac{3}{2}}1 &= 0 \\
+			f\left( n \right)  &= \Theta\left( 1 \right)  \\
+		.\end{align*}
+		From this, $T(n) =  \Theta\left( n^{0} \log n \right) = \Theta\left( \log n \right) $
+	\end{example}
+	\begin{example}
+		$T(n) = 9T\left( \frac{n}{3} \right) + n$ 
+		\begin{align*}
+			a &=  9 \\
+			b &=  3 \\
+			f(n) &=  n \\
+			\log_3 9 &=  2 \\
+			f(n) &=  \mathcal O\left( n^{2-\epsilon} \right)  \\
+		.\end{align*}
+		From this, $T(n) =  \Theta\left( n^2 \right)$
+	\end{example}
+	\begin{example}
+		$T(n) = 3T\left( \frac{n}{4} \right) + n \log n$ 
+		\begin{align*}
+			a &=  3 \\
+			b &= 4 \\
+			f(n) &=  n \log n \\
+			\log_4 3 &= 0.793\\
+			f\left( n \right)  &=  \Omega\left( n^{\log_4 3 + 0.2} \right)  \\
+		.\end{align*}
+		From this:\\
+		$T(n) = \Theta\left( n \log n \right)$ IF $3f\left( \frac{n}{4} \right) = \frac{3}{4} n \log \frac{n}{4} \le  \frac{3}{4} n \log n$. Here we used $c \ge \frac{3}{4}$ 
+
+	\end{example}
+\item SUBSTITUTION
+	\begin{theorem}
+		SUBSTITUTION, basically induction\\
+		We just guess the answer and prove by induction
+	\end{theorem}
+	\begin{example}
+		\begin{equation}
+			T(n) = 2 T\left( \left\lfloor \frac{n}{2} \right\rfloor \right) + n
+		\end{equation}
+		For this, we just guess $\mathcal O \left( n \log n \right) $ \\
+		HYPOTHESIS: works for $< n$\\
+		STEP: it works for $\frac{n}{2}$: $T\left( \left\lfloor \frac{n}{2} \right\rfloor \right) \le c \frac{n}{2} \log \frac{n}{2}$\\
+		\begin{align*}
+			T\left( n \right)  & \le 2c \frac{n}{2} \log \frac{n}{2} + n\\
+			&= cn\log n - cn \log 2 + n \\
+			&= cn \log n - cn + n \\
+			&= cn \log n + \left( 1-c \right) n \\
+			& \le cn \log n\\
+			\forall c \ge 1
+		.\end{align*}
+		BASIS: $T(1) = 1 \le  cn \log n = c 1 \log 1 = 0$ doesn't work\\
+		BASIS: $T(2) = 4 \le  c 2 \log 2 = 2c$ \\
+		BASIS: $T(3) = 5 \le  c 3 \log 3 = c 3 \cdot  0.477$\\
+		So we pick $c > 3, \forall n > 3$
+	\end{example}
+\item RECURSION TREE:
+	\begin{example}
+		$t(n) = T\left( \frac{n}{4} \right) + T\left( \frac{2n}{3} \right) + n$ \\
+		We can't use other methods for this. Master method doesn't work, and induction is iffy.\\
+		We draw a tree:
+		\begin{align*}
+			n\\
+			\frac{n}{4} ~\frac{2n}{3}\\
+\frac{n}{16}~ \frac{2n}{12}~\frac{2n}{12}~\frac{4n}{9}\\
+\ldots
+		.\end{align*}
+		This is how the algorithm will be going. At some point the algorithm will hit a number and STOP. The rightmost path will be the LONGEST path, since the rightmost path we go on $\frac{2}{3}$.\\
+		At every level the algorithm splits, $\mathcal O\left( n \right) $ is introduced. In every layer of the tree, there is $\mathcal O(n)$ work.\\
+		To use this tree to help us understand how much work is required:
+		\begin{equation}
+			T(n) = h * \mathcal O(n)
+		\end{equation}
+		The work this does is the HEIGHT OF THE TREE multiplied by $\mathcal O(n)$\\
+		Question now: how can we find the height of the tree?\\
+		Since we keep going  $\frac{2}{3}$ downward forever on the longest path, it would be (since eventually we hit an element):  \[
+			\left( \frac{2}{3} \right) ^h \cdot  n = 1
+		.\] 
+		Meaning that $h = \log_{\frac{3}{2}}n = \mathcal O(\log n)$\\
+		So the entire function would be $\mathcal O\left( n \log n \right) $
+	\end{example}
+\end{itemize}

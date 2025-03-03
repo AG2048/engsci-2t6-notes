@@ -1,0 +1,53 @@
+\section{Tutorial April 12}
+April 12 2023
+\begin{itemize}
+	\item Second derivatives test:
+		\begin{align*}
+			D = \frac{\partial ^2f}{\partial x^2} \frac{\partial ^2f}{\partial y^2} - \left( \frac{\partial ^2f}{\partial x \partial y}  \right) ^2\\
+			D > 0, f_{xx} > 0 \implies \text{ min }\\
+			D > 0, f_{\times } < 0 \implies \text{ max }\\
+			D < 0 \implies \text{ saddle }\\
+			D = 0 \implies \text{ nothing }
+		.\end{align*}
+		\begin{example}
+			Essentially, given a function -> find points where $\nabla f =  \vec{0}$ \\
+			There may be multiple combinations of $x$ and $y$ such that $\nabla f = \vec{0}$ \\
+			Try each point, find:
+			$$
+			D(x,y) = f_{xx} f_{yy} - f_{xy}^2
+			$$
+			and apply the case to see if it's a saddle or local max or min
+		\end{example}
+		\begin{example}
+			Find extreme values of $f\left( x,y,z \right)  = yz + xy$, subject to $xy = 1, y^2+z^2=1$ \\
+			\begin{align*}
+				\text{Constraints:}
+				g\left( x,y,z \right) = xy = 1\\
+				h\left( x,y,z \right)  = y^2 + z^2 = 1\\
+				\text{Also gradients must match}:\\
+				\nabla f = \left<y, x+z, y \right>\\
+				\lambda \nabla g = \left<\lambda  y, \lambda  x, 0 \right>\\
+				\mu \nabla h = \left<0, 2\mu y, 2\mu z \right>
+			.\end{align*}
+			Using lagrange multipliers:
+			\begin{align*}
+				y &= \lambda y \implies \lambda = 1 \text{ or } y = 0 \text{ however y cannot be 0 cuz }xy=1\\
+				x + z &= \lambda x + 2 \mu y \\
+				y &= 2 \mu z \\
+				xy &= 1 \\
+				y^2 + z^2 = 1\\
+			.\end{align*}
+			we get: 
+			\begin{align*}
+				\lambda &= 1 \\
+				z &= 2\mu y\implies \mu = \frac{z}{2y}\\
+				\mu &= \frac{y}{2z} \implies \frac{z}{2y}\\
+				\implies \mu = \frac{z}{2y} &= \frac{y}{2y}\\
+				y^2 + z^2 &= 1  \implies y = \pm \frac{1}{\sqrt{2} }, z = \pm \frac{1}{\sqrt{2} }\\
+			.\end{align*}
+			Since $xy = 1$,  $x = \pm \sqrt{2} $\\
+			Possible points: $\left( \pm \sqrt{2} , \pm \frac{1}{\sqrt{2} }, \pm \frac{1}{\sqrt{2} } \right) $ :\\
+			$f\left( \pm \sqrt{2} , \pm \frac{1}{\sqrt{2} }, \pm \frac{1}{\sqrt{2} } \right)  = \frac{3}{2}$\\
+			$f\left( \pm \sqrt{2} , \pm \frac{1}{\sqrt{2} }, \mp \frac{1}{\sqrt{2} } \right)  = \frac{1}{2}$
+		\end{example}
+\end{itemize}

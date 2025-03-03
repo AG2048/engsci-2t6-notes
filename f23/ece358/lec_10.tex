@@ -1,0 +1,99 @@
+\section{L10}
+Oct 11, 2023
+\begin{itemize}
+	\item Dynamic Programming - Divide and conquer technique.
+		\begin{theorem}
+			Divide and Conquer: Break the problem into smaller parts and do them recursively.\\
+			We split problem into smaller chunks, attack them separately.\\
+			Two characteristics of divide and conquer: (Quicksort and Mergesort are dividing stuff and recursively solve).
+			\begin{enumerate}
+				\item Optimal Sub-Sructure: Very similar to "greedy algorithms". THE GLOBAL OPTIMAL IS BASED ON OPTIMAL SOLUTIONS TO SMALLER PROBLEMS. THE BIG PROBLEM SOLUTION ENTAILS SMALLER SUB-PROBLEM.
+				\item Overlapping Sub-Problems: As we recursively compute solutions to smaller problems, sometimes we are faced with the same problems to solve. The recursion may ask to solve the same thing multiple times. Therefore what we do is MEMORIZATION. Get sub-problem solutions, memorize them.
+			\end{enumerate}
+			Dynamic programming is usually good for min-max problems, like greedy.\\
+			People often get confused between greedy and DP.
+		\end{theorem}
+		\begin{example}
+			Fibonacci Numbers:\\
+			F(100) = F99 + F98 = (F98 + F97) + (F97 + F96) = ...\\
+			Too much computations...\\
+			The second principle: We remember the solutions to the sub-problems.\\
+		\end{example}
+		\begin{example}
+			Optimal Matrix Parenth Esization:\\
+			Problem: A1, A2, A3 are 10x100, 100x5, 5x50 matrices.\\
+			We have $\left( A_1A_2A_3A_4A_5 \ldots\right) $ A lot of orders to multiply the matrices.\\
+			We have $A_1, A_2, A_3, \ldots, A_{n}$ matrices to multiply in that order. What is the optimal pairing of the matrices? (parenthisation / multiplication) in doing so?\\
+			I NEED TO MINIMIZE THE NUMBER OF SCALAR MULTIPLICATIONS.\\
+			Using the example: (10x100) (100x5) (5x50).\\
+			Assuming $(A_1A_2)A_3$: The process is $\left( 10 \times  100 \times  5 \right) + \left( 10\times 5 \times  50 \right) =7500$ multiplications.\\
+			If we take $A_1\left( A_2A_3 \right) $ : The process is now $\left( 100\times 5\times 50 \right) + \left( 10\times 100\times 50 \right) =75000$ Operations.\\
+			Naive approach: Try all possible parenthisations.\\
+			\[
+			P\left( n \right) = \sum_{k=1}^{n-1} P\left( k \right) \left( n-k \right) = \Omega \left( \frac{4^{n}}{n^{\frac{3}{2}}} \right)
+			\] 
+			We see that $4^{n}$ It's HORRIBLE.\\
+			Let $m(i,j)$ be the minimum number of scalar multiplications needed to compute $A_iA_{i+1}\ldots A_j$. Let $A_{i}$ have dimensions $P_{i-1}\times P_{i}$\\
+			Note every time we try to find $m(i,j)$, we find an index $k$ that minimizes $m(i,k) + m(k+1,j) + P_{i-1}P_{k}P_{j}$. (The last term is the cost to mix the left hand side with the right hand side. The 3 numbers that are multiplied together are the LEFTMOST dimension, K's dimension, the final dimension).\\
+			\[
+				m\left( i,j \right) = \begin{bmatrix} 0 & \text{if} i=j\\ \min_{i \le  k \le  j} \left(m\left( i,k \right) + m\left( k+1, j \right) + P_{i-1}P_kP_j & else \right) \end{bmatrix} 
+			.\] 
+			If we only write a recursive solution, and we are calculatiing $A_1 A_2 A_3 A_4$:\\
+			We will have to split into: $11,24  , 12, 34, 13, 44 $ Which are then split into: $11, 22, 34, 24, 44, 12, 33, 44, 11, 23, 12, 33, 44\ldots$. Too many overlapping calculations. Therefore we should use memorization to optimize the process.\\ For this problem we can use a $4\times 4$ 2d array.
+		\end{example}
+		\begin{example}
+			Longest Common Subsequence:\\
+			Given two strings $X = x_1, x_2, x_3, \ldots, x_{n}$ and $Y = y_1, y_2, y_3, \ldots, y_{m}$.\\ 
+			Find the longegst subsequence (not necessairly consecutive but in that order) of common characters.\\
+			Ex:\\
+			SPRINGTIME\\
+			PIONEER\\
+			Gives: P I N E\\
+			Naive attempt: compare all subsequences, which will take $\Theta\left( n 2^{m} \right) $ but it's crazy slow.
+		\end{example}
+		\begin{theorem}
+			If $Z = z_1, z_2, \ldots, z_k$, is Longest Common Subsequence of $X \& Y$ Then:
+			\begin{enumerate}
+				\item if $x_{n} = y_{m}$ then $x_{n}=y_{m}=z_{k}$ AND $Z_{k-1}$ is LCS of $X_{n-1}$ and $Y_{m-1}$.
+				\item if $x_{n} \neq y_{m}$ then if $z_{k}$ is not equal to $x_{n}$, then $Z$ is LCS of $X_{n-1}$ and $Y$.
+				\item if $x_{n} \neq y_{m}$ then if $z_{k}$ is not equal to $y_{m}$, then $Z$ is LCS of $X$ and $Y_{m-1}$.
+			\end{enumerate}
+			Translation: if last char is equal, then the last char of LCS is the last char of both lists. And the remaining of LCS is LCS if remaining X and Y.\\
+			If last char is not equal, and z isn't last x, then LCS is LCS of X without last char and Y.\\
+			If last char is not equal, and z isn't last y, then LCS is LCS of Y without last char and X.\\
+			The length of LCS, we call it $C[i,j]$ for  $X_i$, and  $Y_j$:\\
+			 \[
+				 C[i,j] = \begin{bmatrix} 0 & i=0 \text{ or } j=0\\
+				 C[i-1, j-1] + 1 & x_i = y_j\\
+			 \max\left( C[i-1, j], C[i, j-1] \right) & x_i \neq y_j\end{bmatrix} 
+			.\] 
+			2d matrix also works to store data here. If we have a matrix, every cell will depend on its left, up, top-left corner neighbors.\\
+			$$
+\begin{bmatrix} 
+  &   & a & m & p & u & t & a & t & i & o & n\\
+  & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+s & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+p & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1\\
+a & 0 & 1 & 1 & 1 & 1 & 1 & 2 & 2 & 2 & 2 & 2\\
+n & 0 & 1 & 1 & 1 & 1 & 1 & 2 & 2 & 2 & 2 & 3\\
+k & 0 & 1 & 1 & 1 & 1 & 1 & 2 & 2 & 2 & 2 & 3\\
+i & 0 & 1 & 1 & 1 & 1 & 1 & 2 & 2 & 3 & 3 & 3\\
+n & 0 & 1 & 1 & 1 & 1 & 1 & 2 & 2 & 3 & 3 & 4\\
+g & 0 & 1 & 1 & 1 & 1 & 1 & 2 & 2 & 3 & 3 & 4\\
+\end{bmatrix} 
+			$$
+			To get the actual characters, back trace from the bottom right corner, and take the characters where the value is 1 more than the value to the left and above.\\
+		\end{theorem}
+		\begin{example}
+			Binomial Coefficients:\\
+			$C(n,k) = \binom{n}{k} = \frac{n!}{k!\left( n-k \right) !}$\\
+			$C(n,0) = 1, C(n,n) = 1$\\
+			$ C(n,k) = C(n-1, k-1) + C(n-1, k)$\\
+		\end{example}
+		\begin{example}
+			Topology
+		\end{example}
+		\begin{example}
+			Differentia (C1)
+		\end{example}
+\end{itemize}

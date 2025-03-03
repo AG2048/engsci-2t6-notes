@@ -1,0 +1,65 @@
+\section{L05 Graphs}
+Sep 26, 2023
+\begin{itemize}
+	\item Graphs
+		\begin{definition}
+			Graphs: $G(V, E)$ means a graph of Vectors ane Edges\\
+			There exists:
+			 \begin{enumerate}
+				 \item Directed and Undirected
+				 \item Weighted Edges (Distance, penalty, profit)
+				 \item Connected Graph: $\forall u, v \in V,~ \exists u \to v$ (forall nodes u, v, in the graph, there exists a path from u to v)
+				 \item Strongly connected component: a subgraph that is connected.
+				 \item Bipartide Graph: There are two sets of vertices, and the two sets are interconnected.
+				 \item Clique (completed graph): Every possible pairs of vertices are connected. $\exists \left( u, v \right) \in E~\forall u,v \in V$. Also, number of edges would be $\frac{V(V-1)}{2}$
+				 \item Directed Acyclic Graph (DAG): A directed graph with no cycles. Starting from one vertex you cannot reach back to the same vertex.
+				 \item Vertex Degree: Number of edges connected to a vertex. (There is a difference between "in-degree" and "out-degree" in directed graphs) (We can prove that sum of all vertex degrees = twice the number of edges. We can prove by induction, but this should be quite obvious)
+			\end{enumerate}
+		\end{definition}
+		\begin{definition}
+			Adjacency List:\\
+			We create a list of size $\lVert V \rVert $ and each element in the list is a list of vertices that are connected to the vertex.\\
+		\end{definition}
+		\begin{definition}
+			Adjacency Matrix:\\
+			We create a matrix of size $\lVert V \rVert \times \lVert V \rVert$ and each element in the matrix is a boolean value that indicates whether the two vertices are connected.\\
+			We can also store the weight of the edge in the matrix.\\
+			For undirected graphs, the matrix is symmetric.\\
+			But if the graph is directed, then it might not be symmetric.\\
+			For a directed graph, how to find the inverse graph (Inverse means directed connections are all flipped)? JUST TRANSPOSE THE MATRIX.\\
+		\end{definition}
+		\begin{example}
+			For each type of representation:
+			$$
+			\begin{bmatrix} & TIME & MEM\\AL & \mathcal O(V) & \mathcal O(V+E) \\ AM & \mathcal O(1) & \mathcal O(V^2) \end{bmatrix} 
+			$$
+			Therefore, Adj Matrix is not really good for sparce Graphs (where not enough connections)
+		\end{example}
+	\item Trees
+		\begin{definition}
+			What is a tree: A undirected, connected acyclic graph.\\
+			Key is no cycle. Connected. No direction.\\
+			Whenever we draw trees, we want to show some sort of hierarchy, to make things clearer.\\
+			ROOT: the top node of the tree.\\
+			CHILD: a node that is connected to a parent.\\
+			PARENT: a node that is connected to a child.\\
+			SIBLING: nodes that have the same parent.\\
+			SUBTREE: a tree that is connected to a node.\\
+			DEPTH: the number of edges from the root to the node.\\
+			HEIGHT: the number of edges from the node to the deepest leaf.\\
+			K-AVARY TREE: a tree where each node has at most k children. One example is a binary tree, which is a 2-avary tree.\\
+			FULL TREE: a tree where each node has exactly k children. a full binary tree is a binary tree where each node has exactly 2 children.\\
+
+		\end{definition}
+		\begin{theorem}
+			All statements are equivalent:
+			\begin{enumerate}
+				\item $G$ is a tree\\
+				\item $\forall$ two vectors $u, v \in V$, there is exactly one path from $u$ to $v$\\
+				\item $G$ is connected and $\lVert E \rVert = \lVert V \rVert - 1$\\
+				\item $G$ is acyclic and $\lVert E \rVert = \lVert V \rVert - 1$\\
+				\item $G$ is connected but if any edge removed, it becomes disconnected.\\
+				\item $G$ is cryclic but if any edge added, it creates a cycle.
+			\end{enumerate}
+		\end{theorem}
+\end{itemize}

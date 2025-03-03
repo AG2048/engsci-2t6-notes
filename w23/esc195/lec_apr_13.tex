@@ -1,0 +1,278 @@
+\section{14.10 Differentiability of an integral with respect to its parameter}
+April 13, 2023
+\begin{itemize}
+	\item $F\left( x \right)  = \int_c^d f\left( x,y \right) dy$ 
+		\begin{theorem}
+			If, in the closed rectangle $x \in [a,b]$ and  $y \in [c,d]$, the function  $f\left( x,y \right) $ has a continuous derivative with respect to x, then for $x\in[a,b]$:
+			 \begin{align*}
+				\frac{dF}{dx} = \frac{d}{dx} \int_c^d f\left( x,y \right) dy = \int_c^d \frac{\partial f}{\partial x} dy
+			.\end{align*}
+		\end{theorem}
+		\begin{proof}
+			Given $x$ and $x+h \in [a,b]$, then:
+			\begin{align*}
+				\frac{F(x+h) - F(x)}{h} &= \frac{1}{h}\int_c^df\left( x+h, y \right) dy - \frac{1}{h}\int_{c}^{d} f\left( x,y \right) dy\\
+&= \int_{c}^{d} \frac{f\left( x+h,y \right) -f\left( x,y \right) }{h}dy  \\
+			.\end{align*}
+			\begin{align*}
+				\frac{dF}{dx} = \lim_{h \to 0} \int_{c}^{d} \frac{f\left( x+h,y \right) -f\left( x,y \right) }{h}dy = \int_{c}^{d} \frac{\partial f}{\partial x} dy  
+			.\end{align*}
+		\end{proof}
+		\begin{example}
+			$F\left( x \right)  = \int_{2}^{4} e^{xy}dy $ 
+			\begin{align*}
+				\frac{dF}{dx} &= \frac{d}{dx}\left[ \frac{e^{xy}}{x} \right]_2^4 \\
+				&= \frac{d}{dx}\left[ \frac{e^{4x}-e^{2x}2}{2} \right]  \\
+				&= e^{4x}\left( \frac{4x-1}{x^2} \right) -e^{2x}\left( \frac{2x-1}{x^2} \right)  \\
+			.\end{align*}
+			\begin{align*}
+				\frac{dF}{dx} &= \int_{2}^{4} \frac{\partial e^{xy}}{\partial x} dy \\
+				&= \int_{2}^{4} ye^{xy}dy  \\
+				&= \left[ \frac{y}{x} e^{xy} \right]_2^4 -\int_{2}^{4} \frac{e^{xy}}{x}dy \\
+				&= \left[ \left( \frac{y}{x}-\frac{1}{x^2} \right) e^{xy} \right] _2^4 \\
+				&= e^{4x}\left( \frac{4}{x}-\frac{1}{x^2} \right) -e^{2x}\left( \frac{2}{x}-\frac{1}{x^2} \right)  \\
+			.\end{align*}
+			We get the same result
+		\end{example}
+		\begin{example}
+			we have $A(t) = \int_{x_1(t)}^{x_2(t)} f(x)dx, f(x)\ge 0 $ $ A $ is the area under the graph with a "sliding" window made by $x_1(t), x_2(t)$\\
+			Basically, every time we want to calculate $\Delta A$, we have to add the new area, subtract the old area "lost".
+			\begin{align*}
+				\Delta A &= A\left( t+\Delta t \right) - A\left( t \right) \\
+						 &= \int_{x_2(t)}^{x_{2}\left( t+\Delta t \right) } f\left( x \right) dx  - \int_{x_1(t)}^{x_1(t+\Delta t)} f(x)dx \\
+			.\end{align*}
+			\begin{align*}
+				\int_{a}^{b} f\left( x \right) dx &= f\left( x^* \right) (b-a) && x^* \in (a,b)\\
+				\int_{z}^{z+\Delta z} f(x)dx &= f\left( z^* \right) \Delta z  && z^* \in \left( z, z+\Delta z \right) \\ 
+			.\end{align*}
+			\begin{align*}
+			\Delta A = f\left( x_2^* \right) \Delta x_2 - f\left( x_1^* \right) \Delta x_1
+			\end{align*}
+			Where $x_2^* \in \left( x_2, x_2+\Delta x_2 \right) , x_1^* \in \left( x_1, x_1+\Delta x_1 \right) $ 
+			\begin{align*}
+				\therefore \frac{\Delta A}{\Delta t} &= f\left( x_2^* \right) \frac{\Delta x_2}{\Delta t} - f\left( x_1^* \right) \frac{\Delta x_1}{\Delta t}  \\
+			\implies \frac{dA(t)}{dt} &=  f\left( x_2 \right) \frac{dx_2}{dt}-f\left( x_1 \right) \frac{dx_1}{dt} 
+			\end{align*}
+		\end{example}
+		\begin{theorem}
+			Leibnitz's Rule: Given a region $R$ in the $x-y$ plane in which the functions $\phi_1(x)$ and $\phi_2(x)$ have continuous derivatives with respect to x, and in which $f\left( x,y \right)$ is continuously differentiable:\\
+			if $F(x) = \int_{y = \phi_1(x)}^{y = \phi_2(x)} f\left( x,y \right) dy $ \\
+			Then 
+			$$
+			\frac{dF}{dx} = \int_{\phi_1(x)}^{\phi_2(x)} \frac{\partial f}{\partial x} dy + f\left( x,y=\phi_2(x) \right) \frac{d\phi_2}{dx} - f\left( x,y =\phi_1(x)\right)  \frac{d\phi_1}{dx}
+			$$
+		\end{theorem}
+		\begin{example}
+			$f\left( x \right)  = \int_{0}^{x^2} \sin\left( xy \right) dy $ 
+			This gives:
+			\begin{align*}
+				f\left( x,y \right)  &= \sin(xy) && \frac{\partial f}{\partial x}  = y\cos(xy)\\
+				\phi_1(x) &= 0 && \frac{d\phi_1}{dx} = 0 \\
+				\phi_2(x) &=  x^2 && \frac{d\phi_2}{dx} = 2x \\
+			.\end{align*}
+			$$
+\therefore \frac{dF}{dx} = \left(\int_{0}^{x^2} y \cos (xy) dy\right)  + 2x \sin(x^3) - 0 \sin 0
+			$$
+		\end{example}
+		\begin{example}
+			$F\left( x \right) = \int_{0}^{1} \frac{y^{x}-1}{\ln y}dy, x > -1 $:
+			\begin{align*}
+				F'(x) &=  \frac{d}{dx} \int_{0}^{1} \frac{y^{x}-1}{\ln y}dy  \\
+				&= \int_{0}^{1} \frac{\partial }{\partial x} \left( \frac{y^{x}-1}{\ln y} \right) dy  \\
+				&= \int_{0}^{1} \frac{y^{x}\ln y}{\ln y}dy  \\
+				&= \int_{0}^{1} y^{x}dx  \\
+				&= \left[ \frac{y^{x + 1}}{x + 1} \right] _0 ^ 1 \\
+				&= \frac{1}{x+1} \\
+			.\end{align*}
+			\[
+			\therefore F(x) = \int \frac{dx}{x+1} = \ln \left| x + 1 \right| + C
+			.\] 
+			\[
+			 \implies F(0) = \int_{0}^{1} \frac{y^0 - 1}{\ln y} dy = \int_{0}^{1} \frac{1-1}{\ln y}dy = 0  
+			.\] 
+			\[
+			\therefore C = 0, \therefore  F(x) = \ln(x+1), x>-1
+			.\] 
+		\end{example}
+\end{itemize}
+\section{Exam prep}
+\begin{example}
+	Question 1: Basic Integral (basically free questions)
+\end{example}
+\begin{example}
+	Question 2: It's actually the best question:\\
+	Easiest polar coordinate question, what's the area between curves, with easy to find intersections\ldots
+\end{example}
+\begin{example}
+	Question 3(a): Sequence:
+	\[
+		a_n = \mathrm{max}\,\left\{ \sin 1, \sin 2, \sin 3, \ldots, \sin n \right\} 
+	.\] 
+	Does this have a limit?\\
+	Idea: monotonic sequence theorem, non-decreasing, with lowst upper bound, therefore sequence converges to its upper bound, which is 1\\
+	Does it ever reach it? no, because $\pi$ is irrational. But it should become infinitely close.
+\end{example}
+\begin{example}
+	Question 3(b): Series: Does it converge?
+	\[
+	\sum_{n=2}^{\infty} \frac{5^n}{n}x^n
+	.\] 
+	Ratio test or root test would work. Root test is marginally less work than ratio test.
+	\[
+	a_n^{\frac{1}{n}} = \frac{5 \left| x \right| }{n^{\frac{1}{n}}} \to 5\left| x \right| 
+	.\] 
+	Then remember to test the endpoints of $\frac{1}{5}$ or $-\frac{1}{5}$
+\end{example}
+\begin{example}
+	Question 4: a proof test:
+	\[
+	\lim_{n \to \infty} \frac{a_n}{b_n} = 0
+	.\] 
+	tells us 
+	\[
+	\left| \frac{a_n}{b_n} \right| < 1\to a_n < b_n
+	.\] 
+	given that $b_n$ converges, $a_n$ converges. (This part is already 5 marks)\
+	If approach infinity it's the other way around\\
+	if approach a number, $a_n$ is between a range of  $b_n$ and vice versa. If any converge we can argue other one converge.
+\end{example}
+\begin{example}
+	Question 5: part c can be done before part a and b\\
+	We can do integral test:\\
+	One way the riemann sum rectangle is below the curve, one way it's above the curve, so it's the inequality lawl (left hand riemann sum and right hand riemann sum)\\
+	part b:\\
+	Sum of log is just product of the contents.
+	\[
+	\sum_{k=1}^{n} \ln k = \ln (n!)
+	.\] 
+\end{example}
+
+\begin{example}
+	question 6a:\\
+	We use taylor series:
+	\[
+	f\left( x \right)  = f(a) + f'(a) (x-a) + \frac{f''(a)}{2}(x-a)^2\ldots
+	.\] 
+	g(x) is the same\\
+	 \[
+	\frac{f(x)}{g(x)}=\frac{f'(a)(x-a) + \frac{1}{2}f''(a)(x-a)^2\ldots}{g'(a)(x-a) + \frac{1}{2}g''(x) (x-a)^2\ldots}
+	.\] 
+	cancel out the (x-a) we get:
+	\[
+	\frac{f'(a) + \frac{1}{2}f''(a) (x-a)\ldots}{g'(a) + \frac{1}{2}g''(a) (x-a)}
+	.\] 
+	here limit is as $x\to a$ so we have l'hopital's rule
+\end{example}
+\begin{example}
+	question 6b:
+	\[
+	1 + \frac{x}{2} + \frac{x^2}{4!} + \frac{x^3}{6!} + \frac{x^4}{8!} + \ldots = 0
+	.\] 
+	This is taylor series of some function that looks like cosine?
+	\[
+	f(-t^2) = 1 - \frac{t^2}{2!} + \frac{t^4}{4!} - \frac{t^6}{6!} + \frac{t^8}{8!} + \ldots = \cos(t)
+	.\] 
+	\[
+	\implies \cos t = 0 \implies t = \pm \left( \frac{\pi}{2}-\pi k \right) 
+	.\] 
+	\[
+	f(x) = 0 \implies x = t^2 \implies x = -t^2 \implies x = -\left( \frac{\pi}{2} - \pi k \right) ^2
+	.\] 
+\end{example}
+\begin{example}
+	Question 7: Advice: Be careful and methodical for this type of question! Any negative signs lost is huge loss\\
+	\[
+	\vec{r}(t) = t\hat{i} + \frac{1}{t}\hat{j} + \sqrt{2} \ln(t) \hat{k}
+	.\] 
+	find unit tangent, unit normal, tangential and normal of acceleration at t = 1
+\end{example}
+\begin{example}
+	Question 8(a) does this limit exist?
+	\[
+	\lim_{\left( x,y \right)  \to (0,0)} \frac{2xy}{x^2 + 3y^2} 
+	.\] 
+	No cuz set x = y and set x = 0..
+\end{example}
+\begin{example}
+	8(b)\\
+	Formal definition of multivariable function $o(h)$ to find gradient of $f\left( x,y \right)  = \frac{1}{2}x^2 + 2xy + y^2$\\
+	\[
+	f\left( x+h_1, y + h_2 \right)  - f\left( x,y \right)  = \nabla f \cdot  \vec{h} + o(h), \vec{h} = (h_1,h_2)
+	.\] 
+\end{example}
+\begin{example}
+	Question 9:\\
+	Abs max and min of $f\left( x,y \right) = x^2 + 2y^2 - 2x - 4y + 1$ on
+	\[
+	D = \left\{ (x,y) | 0 \le x \le  2, 0 \le  y \le  3 \right\} 
+	.\] 
+	Sketch region and show locations of critical points\\
+	This is not really a lagrange multiplier question, don't do it\\
+	To solve:
+	\[
+	\nabla f = \left( 2x - 2, 4y - 4 \right)  = \vec{0}
+	.\] 
+	Then test the 4 lines  $ x = 0, x = 2, y = 0, y = 3$ and 4 points  $(0,0), (2,3), (2,0), (0,3)$\\
+	To test lines: In this scenario just treat it as a 1d function by subbing the numbers in
+\end{example}
+\begin{example}
+	10, lagrange multiplier question
+	\[
+	f\left( x,y,z \right)  = x^2 + y^2 + 2z, \text{ on } h\left( x,y,z \right)  = x + y + 2z = 2, g\left( x,y,z  \right) = x^2 + y^2 - z = 0
+	.\] 
+	\begin{align*}
+		\nabla f &=  \left( 2x,2y,2 \right)  \\
+		\nabla h &= (1,1,2)\\
+		\nabla g &= \left( 2x,2y,-1 \right)  \\
+	.\end{align*}
+	\begin{align*}
+		2x &= \lambda 1 + \mu \cdot  2x \\
+		2y &= \lambda 1 + \mu \cdot  2y \\
+		2 &= \lambda * 2 - \mu \cdot  1 \\
+	.\end{align*}
+	Solve for it
+\end{example}
+\begin{example}
+	Question 11\\
+	\[
+	f\left( x,y,z \right)  = e^{x}\ln z + x^2y - z \cos y + C
+	.\] 
+	Find if the 2nd derivatives match:
+	\[
+	f_x = e^{x}\ln z + 2xy, f_y = x^2 + z \sin y, f_z = \frac{e^x}{z} - \cos y
+	.\] 
+	\[
+	f_{xy} = f_{yx} = 2x
+	.\] 
+	\[
+	f_{xz} = f_{zx} = \frac{e^x}{z}
+	.\] 
+	\[
+	f_{yz} = f_{zy} = \sin y
+	.\] 
+\end{example}
+
+\begin{example}
+	$ y (x) = 2 + \int_{1}^{x} \left( y(t) \right) ^2dt $ 
+	\[
+	y'(x) = \left( y(x) \right) ^2\implies \frac{dy}{y^2} = dx\implies y  = \frac{-1}{x+C}
+	.\] 
+	But note y is defined as definite integral, no constant term. Try $y(1) = 2 = \frac{-1}{1+C} \implies y(x) = \frac{2}{3-2x}$
+\end{example}
+\begin{example}
+	Turn this into a workable partial fraction:
+	\[
+		\int_{0}^{\frac{\pi}{4}} \sqrt{\tan x} dx
+	.\] 
+	We try $u = \sqrt{\tan x}, 0 \le  u \le  1 $\\
+	$ 2udu = \sec ^2 x dx = \left(  1 + \tan ^2 x\right) dx = \left( 1 + u^{4} \right) du$
+	So the integral is:
+	\[
+	2 \int_{0}^{1} \frac{u^2}{1 + u^{4}}du 
+	.\] 
+	Partial Fractions: 
+	\[
+	\frac{u^2}{1 + u^{4}} = \frac{Au + B}{u^2 + \sqrt{2} u + 1} + \frac{Cu + D}{u^2 - \sqrt{2} u + 1}
+	.\] 
+
+\end{example}

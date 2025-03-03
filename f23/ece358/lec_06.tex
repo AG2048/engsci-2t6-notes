@@ -1,0 +1,127 @@
+\section{L06 QuickSort}
+Sep 27, 2023
+\begin{itemize}
+	\item Quick Sort (Divide and Conquer)
+		\begin{lstlisting}
+QS(in, left, right)
+	pivot = partition(in, left, right)
+	if pivot > left
+		QS(in, left, pivot)
+	if pivot < right
+		QS(in, pivot+1, right)
+int partition(in, left, right)
+	es = lelft
+	pivot = in[left]
+	for i = left+1 to right
+		if (in[i] <= pivot)
+			es = es + 1
+			swap(in[i], in[es])
+	swap(in[left], in[es])
+	return es
+		\end{lstlisting}
+	\begin{example}
+		Take an array. Break the array into 2 parts. All values bigger than P, less equal to P. Then, recursively sort the 2 parts.\\ Also, the partition takes $\mathcal O(n)$\\
+		Take the array of unsorted numbers, we pick the leftmost as pivot. Then we move thru the whole list.\\
+		A snapshot of the array is shown below.\\
+		LEFT - pivot - i - RIGHT\\
+		Example:\\
+		26, 23, 35, 29, 19, 12, 22\\
+		ls = 26\\
+		go thru each by each, round 19 < ls\\
+		swap and result is:\\
+		26 19 35 29 33 12 22\\
+		ls increment by 1 to pos of 35\\
+		Then:
+		26 19 12 22 33 35 29\\
+		This finishes the partition.\\
+		The partition is now around 29\\
+		Left list:\\
+		26 19 12 22\\
+		22 12 19 26\\
+		Split LEFT LEFT:\\
+		19, 12, 22\\
+		LEFT LEFT LEFT:\\
+		12, 19\\
+		LEFT LEFT LEFT LEFT:\\
+		12\\
+		LEFT LEFT LEFT RIGHT:\\
+		19\\
+		LEFT LEFT RIGHT:\\
+		22\\
+		LEFT RIGHT:\\
+		26\\
+		Right list:\\
+		35 29\\
+		29 35\\
+		29\\
+		35\\
+	\end{example}
+	\begin{theorem}
+		Quick Sort: $T(n) = T(n-1) + \Theta(n)$ because we split tree, each split we take  $\Theta (n)$ times, and recursion.\\
+		This ends to be  $\mathcal O(n^2)$\\
+		Worse case happens when we split $\mathcal O(n)$ list into 2 branches of  $\mathcal O(1), \mathcal O(n-1)$
+	\end{theorem}
+	\begin{theorem}
+		Best Case: When it's split exactly in the middle.\\
+		We split the tree into $\frac{n}{2}$ and $\frac{n}{2}$. When the partition is always the median\\
+		This case: $T(n) = 2T\left( \frac{n}{2} \right)  + \mathcal O(n) = \Theta(n \log n)$
+	\end{theorem}
+	\begin{theorem}
+		Average Case: we split randomly, not necessairly half and half.\\
+		Assume we split  $\frac{n}{8}$ and $\frac{7n}{8}$ \\
+		$T(n) = T\left( \frac{n}{8} \right)  + T\left( \frac{7n}{8} \right) + \mathcal O(n)$\\
+		Then when we split the tree, the longest branch will have $\frac{7n}{8} \times \frac{7n}{8} \times \frac{7n}{8} \times \ldots$. And we know that each layer of the tree will require $\mathcal O(n)$ to run.\\
+		Now we need to find the HEIGHT of the tree, where  $\frac{7}{8} ^{h} \times n = 1$, then $h = \log_{\frac{8}{7}} n$, and $h = \mathcal O(\log n)$
+		Then $T(n) = \mathcal O(n \log n)$ since $T(n) = h \cdot  \mathcal O(n)$\\
+		NOTE: EVEN IF WE MAKE A 79999:80000 SPLIT, ASYMPTOTICALLY IT IS STILL $\mathcal O(n \log n)$
+	\end{theorem}
+\item We can do randomized partition to ensure that we get the average case.\\
+	\begin{lstlisting}
+rand-partition(in, left, right)
+	l = random(left, right)
+	swap (in[l], in[left])
+	return partition
+	\end{lstlisting}
+\end{itemize}
+\section{L06 QuickSort-Continued}
+Sep 27, 2023
+\begin{itemize}
+	\item Worse Case Analysis:
+		\begin{theorem}
+			$T(n) = \max_{1 \le  q \le  n-1} \left\{ T\left( q \right) + T\left( n-q \right) + \Theta(n)\right\}= \mathcal O(n^2)$\\
+			Step: $T(n) \le  \max_{1 \le  q \le  n-1} c \left\{ q^2 + \left( n-q \right) ^2 \right\} + \Theta(n)$\\
+			As 2nd derivative of q is positive max for q = 1 or 1 = n-1, let q = 1\\
+			$$
+			\max \left\{ q^2 + (n-q)^2 \right\} \le  1^2 + (n-1)^2 = n^2 - 2(n-1)
+			$$
+			Therefore $T(n) \le  c(n^2 - 2(n-1)) + \Theta(n) = \mathcal O(n^2)$
+		\end{theorem}
+		\begin{example}
+			Expected case of random QS\\
+			$$
+T(n) = \frac{1}{n} \left( T(1) + T(n-1)+  \sum_{q=1}^{n-1} T(q) + T(n-q) \right) + \Theta(n)
+			$$
+			But
+			$$
+			\frac{1}{n} \left( T(1) + T(n-1) \right)  \le  \frac{1}{n} \left( \Theta(1) + \Theta(n^2) \right) = \mathcal O(n)
+			$$
+			So we bring in the largest term\\
+			$$
+T(n) = \frac{1}{n} \sum_{q}^{n-1} T(q) + T(n-q) + \Theta(n) = \frac{2}{n} \sum_{q=1}^{n-1} T(q) + \Theta(n)
+			$$
+			Use substitution to show that $T(n) = a n \log n + b$ for some $a,b$ \\
+			STEP\\
+			$$
+T(n) \le  \frac{2}{n} \sum_{k=1}^{n-1} a k \log k + b + \Theta(n) = \frac{2a}{n} \sum_{k=1}^{n-1} k \log k + \frac{2b}{n}(n-1) +  \Theta(n) \le  a n \log n - \frac{a}{4}n + 2b + \Theta(n) = a n \log n + b + \left( \Theta(n) + b - \frac{a}{4} n  \right) < an \log n + b
+			$$ Note last step requires a large enough $a$ value.
+		\end{example}
+		\begin{lemma}
+			$$
+\sum_{k=1}^{n-1} k \log k \le  \frac{1}{2} n^2 \log n - \frac{1}{8} n^2
+			$$
+			Sometimes theorem can be hard to proof. So we just assume something is true
+			\[
+			\sum_{k=1}^{\left\lfloor \frac{n}{a} \right\rfloor-1} k \log k + \sum_{k=\left\lceil \frac{n}{2} \right\rceil }^{n-1} k \log k \le  \log \frac{n}{2} \sum_{1}^{\left\lfloor \frac{n}{2} \right\rfloor} k + \log n \sum_{k = \left\lfloor \frac{n}{q} \right\rfloor}^{n-1} k = \ldots
+			.\] 
+		\end{lemma}
+\end{itemize}

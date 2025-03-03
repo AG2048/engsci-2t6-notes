@@ -1,0 +1,62 @@
+\section{L12}
+Oct 18, 2023
+\begin{itemize}
+	\item Greed
+		\begin{theorem}
+			Greedy Algorithms
+			\begin{enumerate}
+				\item Matroids
+				\item Good for optimal solutions to min-max problems
+				\item good to "approximate" (good but not optimal) solution to NPC problems.
+			\end{enumerate}
+			Principles: Greedy Choice\\
+			Do what looks best at the moment.\\
+			this leads to a global optimum.\\
+			OPTIMAL SUBSTRUCTURE/PROBLEMS:
+			
+		\end{theorem}
+		\begin{example}
+			Activity selection: One classroom, many lecture to schedule. Possibly overlapping. We want to maximize the number of lecture in the day in this room.\\
+			So we have\\
+			\begin{lstlisting}
+                        GGGGGGGGHHHHHHHHHHHHHHHH
+        CCCC        FFFFFFFFFFFFFFFF    KKKK    LLLLLLLL
+    BBBBBBBB    EEEEEE
+AAAAAAAADDDDDDDDDDDD
+8	9	10	11	12	13	14	15	16	17	18	19	20	21	22
+			\end{lstlisting}
+			A solution is just to pict the lecture that ends first.
+		\end{example}
+		\begin{example}
+			KnapSack Problem:\\
+			A bag F that can carry w weight.\\
+			O-1 problem: Can take or leave item i with cost $c_i$ and weight $w_i$.\\
+			Fractional: Can take a fraction of item i with cost $c_i$ and weight $w_i$.\\
+			Fractional we can use greedy algorithm, we sort by "value per weight" and take the best.\\
+			O-1 we can't use greedy algorithm, must use dynamic programming.\\
+			O-1 we have the following dynamic:\\
+			C is the optimal profit, leftover weight w.\\
+			C[i,w] = 0 if i = 0 or w = 0\\
+			C[i,w] = C[i-1,w] if $w_i > w$\\
+			C[i,w] = max(C[i-1,w], C[i-1,w-w_i] + c_i) if $w_i \leq w$\\
+		\end{example}
+	\item Huffman Codes for data compression:
+		\begin{theorem}
+			We have
+			\begin{lstlisting}
+chars	type	a	b	c	d	e	f
+f()		Freq	45	13	12	16	9	5
+d(c1)	fixed	000	001	010	011	100	101	
+d(c2)	var		0	101	100	111	11011100
+\end{lstlisting}
+B(t) = $\sum_{i=1}^{n} f(c_i) \cdot d(c_i)$\\
+Which is the bit-size of encoded file.\\
+Problem: We want to minimize number of bit, or equivalently, minimize B(t).\\
+We build a binary tree as follows:
+\begin{enumerate}
+	\item unite the less frequent chars into a single node. With new frequency the sum of their frequencies.
+	\item Repeat until only one node remains.
+	\item Label tree 0 and 1 left and right.
+\end{enumerate}
+		\end{theorem}
+\end{itemize}

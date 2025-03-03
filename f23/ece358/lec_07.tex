@@ -1,0 +1,32 @@
+\section{Lecture Title}
+Month, date, year
+\begin{itemize}
+	\item Heapsort
+		\begin{theorem}
+			Heap: Binary tree with properties of:
+			\begin{enumerate}
+				\item Heap Shape: Property: a full binary tree with leafs pushed to the LEFT
+				\item Heap Order: Property: key(parent) $\geq$ key(child)
+			\end{enumerate}
+			We have a few functions for heaps:
+			\begin{enumerate}
+				\item \texttt{BubbleDown(i)} (heapify): Repeat: swap 1 with larger of 2 children (2i or 2i+1) until heap order is restored (O (lg n))
+				\item \texttt{BuildHeap(A)}: for i = (length(A)/2) -> 1: bubble down (i). ESSENTIALLY: start at the bottom and every time you bubble down, you bubble down the parent of the node you just bubbled down. (O(n))
+				\item \texttt{BubbleUp(i)}: Repeat: swap i with parent until heap order is restored
+				\item \texttt{HeapSort(A)}: BuildHeap(A), then for i = length(A) down to 1: swap A[1] with A[i], heapsize -= 1, bubble down A[1] (i.e. bubble down the root) O(n lg n)
+					\end{enumerate}
+				\end{theorem}
+				\begin{lemma}
+					There at most $\left\lceil \frac{n}{2^{h+1}} \right\rceil $ nodes of neight $h$ in a heap
+				\end{lemma}
+			\item Priority Queues
+				\begin{itemize}
+					\item \texttt{Insert(Q, x)}: insert x into Q
+					\item \texttt{FindMax(Q)}: return max element in Q
+					\item \texttt{DeleteMax(Q)}: delete max element in Q
+					\item \texttt{IncreaseKey(Q, x, k)}: increase key of x to k
+					\item \texttt{DecreaseKey(Q, x, k)}: decrease key of x to k
+					\item \texttt{Delete(Q, x)}: delete x from Q
+				\end{itemize}
+			
+\end{itemize}

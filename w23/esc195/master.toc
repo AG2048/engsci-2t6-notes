@@ -1,0 +1,11 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {28}Partial Derivatives}{2}{section.28}%
+\contentsline {section}{\numberline {29}Directional Derivatives and Gradient Functions}{5}{section.29}%
+\contentsline {section}{\numberline {30}Chain Rule}{9}{section.30}%
+\contentsline {section}{\numberline {31}Tangent Planes and Linear Approximations}{14}{section.31}%
+\contentsline {section}{\numberline {32}Maximum and Minimum Values}{18}{section.32}%
+\contentsline {section}{\numberline {33}14.8 Lagrange Multipliers}{22}{section.33}%
+\contentsline {section}{\numberline {34}Tutorial April 5}{23}{section.34}%
+\contentsline {section}{\numberline {35}Tutorial April 12}{25}{section.35}%
+\contentsline {section}{\numberline {36}14.10 Differentiability of an integral with respect to its parameter}{26}{section.36}%
+\contentsline {section}{\numberline {37}Exam prep}{29}{section.37}%
