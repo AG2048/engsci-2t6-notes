@@ -1,0 +1,84 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{bm}
+
+% package for mathds
+\usepackage{dsfont}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Principle,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{principle}
+\tcolorboxenvironment{principle}{colback=LightGreen}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{Lab 3}
+		\HRule{2.0pt} \\ [0.6cm] \LARGE{ECE356} \vspace*{10\baselineskip}}
+		}
+\date{}
+\author{\textbf{Andy Gong} \\ 
+		1008848482}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+% ------------------------------------------------------------------------------
+\section{Preparation} % The big UNIT STEP FUNCTION's symbol is the big ONE(t): $\mathcal{1}(t)$
+Assuming $\theta = 0$ and hence $D(s) = 0$, find final value of $v$ if input is $v_m(t) = V_0 \cdot \mathds{1}(t)$, and $v(0) = 0$.
+
+$$V(s) = V_m(s) \cdot  \frac{a}{s + b}$$
+
+$$V(s) = V_0 \cdot \frac{a}{s \cdot (s + b)}$$
+
+Using FVT:
+
+$$\lim_{t \to \infty} v(t) = \lim_{s \to 0} s \cdot V(s) = \lim_{s \to 0} s \cdot V_0 \cdot \frac{a}{s \cdot (s + b)} = V_0 \cdot \frac{a}{b}$$
+
+\end{document}
