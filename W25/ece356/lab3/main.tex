@@ -81,4 +81,31 @@ Using FVT:
 
 $$\lim_{t \to \infty} v(t) = \lim_{s \to 0} s \cdot V(s) = \lim_{s \to 0} s \cdot V_0 \cdot \frac{a}{s \cdot (s + b)} = V_0 \cdot \frac{a}{b}$$
 
+Subbing in $a= \frac{K_m}{M}$ and $b = \frac{M}{B}$:
+
+$$\lim_{t \to \infty} v(t) = V_0 \cdot \frac{K_m}{M} \cdot \frac{M}{B} = V_0 \cdot \frac{K_m}{B}$$
+
+
+$$\Delta v = 0.457873 - (-0.40167) = 0.859543$$
+$$\Delta v = \frac{V_0 a}{b} = \frac{3a}{b} \implies a = \frac{\Delta v b}{3} = 0.286514b$$
+
+For $b=10$, $a=2.86514$
+
+In a feedback system, the output can be modelled as:
+$$Y(s) = \frac{C(s)G(s)}{1 + C(s)G(s)} \cdot R(s)$$
+Where in a proportional controller, $C(s) = K$ and $G(s) = \frac{a}{s + b}$, with the reference as a step function $R(s) = \frac{\overline{R}}{s}$.
+$$Y(s) = \frac{K \cdot \frac{a}{s + b}}{1 + K \cdot \frac{a}{s + b}} \cdot \frac{\overline{R}}{s} = \frac{K \cdot a}{s + b + K \cdot a} \cdot \frac{\overline{R}}{s}$$
+This system is BIBO stable with only negative poles, so we can use the FVT to find the step response:
+$$\lim_{t \to \infty} y(t) = \lim_{s \to 0} s \cdot Y(s) = \lim_{s \to 0} s \cdot \frac{K \cdot a}{s + b + K \cdot a} \cdot \frac{\overline{R}}{s} = \frac{K \cdot a}{b + K \cdot a} \cdot \overline{R}$$
+This means that, as $K \to \infty$, the steady state output will approach $\overline{R}$. However, if $K$ is not sufficiently large, the steady state output will be smaller than $\overline{R}$. This result matches what was observed, where increasing $K$ brought the steady state output closer to the reference, but did not reach it.
+\newpage
+For a PI controller, $C(s) = K\frac{T_I s + 1}{T_I s}$. 
+
+Plugging into the system, we get:
+$$Y(s) = \frac{K \frac{T_I s + 1}{T_I s } \frac{a}{s+b}}{1 + K \frac{T_I s + 1}{T_I s} \frac{a}{s+b}} \cdot \frac{\overline{R}}{s} = \frac{K \cdot a \cdot (T_I s + 1)}{T_I s (s + b) + K \cdot a (T_I s + 1)} \cdot \frac{\overline{R}}{s}$$
+
+Using the FVT, we get:
+
+$$\lim_{t \to \infty} y(t) = \lim_{s \to 0} s \cdot Y(s) = \lim_{s \to 0} s \cdot \frac{K \cdot a \cdot (T_I s + 1)}{T_I s (s + b) + K \cdot a (T_I s + 1)} \cdot \frac{\overline{R}}{s} = \frac{K \cdot a}{K \cdot a} \cdot \overline{R} = \overline{R}$$
+
 \end{document}
